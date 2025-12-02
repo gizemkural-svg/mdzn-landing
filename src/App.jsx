@@ -41,18 +41,14 @@ import {
   Globe, 
   Briefcase, 
   Smartphone, 
-  ArrowUpRight, 
-  RefreshCw, 
+  RotateCw, 
   TrendingUp, 
   Activity, 
   Users, 
   Paperclip, 
   MessageSquare, 
-  Filter, 
-  Plus, 
   Search, 
-  Bell, 
-  Settings
+  Bell
 } from 'lucide-react';
 import { LOGOS } from './LOGOS';
 import { IMAGES } from './IMAGES';
@@ -67,9 +63,9 @@ const solutionsData = {
     description: "Markanızın performans pazarlama süreçlerini uçtan uca yönetin. Doğru partnerleri bulun, gerçek zamanlı verilerle kararlar alın ve ROI odaklı büyüme sağlayın.",
     features: ["Gerçek zamanlı performans takibi", "Özel komisyon kurguları", "Detaylı ilişkilendirme (Attribution)"],
     capabilities: [
-      { title: "Partner Keşfi", desc: "Binlerce onaylı yayıncı ve influencer arasından markanıza en uygun olanları filtreleyin.", icon: <Search size={20}/>, visual: "Discovery UI" },
-      { title: "Marka Güvenliği", desc: "Dolandırıcılık önleme (Fraud Detection) ve marka güvenliği araçlarıyla bütçenizi koruyun.", icon: <CheckCircle2 size={20}/>, visual: "Security Shield" },
-      { title: "Otomatik Ödemeler", desc: "Tek faturayla yüzlerce partnerinize otomatik ve zamanında ödeme yapın.", icon: <PieChart size={20}/>, visual: "Payment Flow" }
+      { title: "Partner Keşfi", desc: "Binlerce onaylı yayıncı ve influencer arasından markanıza en uygun olanları filtreleyin.", icon: Search, visual: "Discovery UI" },
+      { title: "Marka Güvenliği", desc: "Dolandırıcılık önleme (Fraud Detection) ve marka güvenliği araçlarıyla bütçenizi koruyun.", icon: CheckCircle2, visual: "Security Shield" },
+      { title: "Otomatik Ödemeler", desc: "Tek faturayla yüzlerce partnerinize otomatik ve zamanında ödeme yapın.", icon: PieChart, visual: "Payment Flow" }
     ],
     cta: "Demo Talep Et",
     modalType: 'demo'
@@ -82,9 +78,9 @@ const solutionsData = {
     description: "Operasyonel yükü azaltın, stratejiye odaklanın. Çoklu müşteri yönetimi ve birleştirilmiş raporlama ile ajans verimliliğini maksimuma çıkarın.",
     features: ["Çoklu marka/müşteri yönetimi", "Konsolide raporlama", "Beyaz etiket (White-label) seçenekleri"],
     capabilities: [
-      { title: "Müşteri Portföyü", desc: "Tüm müşterilerinizin kampanyalarını tek bir dashboard üzerinden izleyin ve yönetin.", icon: <Briefcase size={20}/>, visual: "Portfolio View" },
-      { title: "Ekip İzinleri", desc: "Farklı departmanlar ve müşteri temsilcileri için gelişmiş yetkilendirme sistemi.", icon: <Users size={20}/>, visual: "Permissions Grid" },
-      { title: "Özel Raporlar", desc: "Müşterileriniz için otomatik, markalı ve detaylı performans raporları oluşturun.", icon: <BarChart2 size={20}/>, visual: "Report Builder" }
+      { title: "Müşteri Portföyü", desc: "Tüm müşterilerinizin kampanyalarını tek bir dashboard üzerinden izleyin ve yönetin.", icon: Briefcase, visual: "Portfolio View" },
+      { title: "Ekip İzinleri", desc: "Farklı departmanlar ve müşteri temsilcileri için gelişmiş yetkilendirme sistemi.", icon: Users, visual: "Permissions Grid" },
+      { title: "Özel Raporlar", desc: "Müşterileriniz için otomatik, markalı ve detaylı performans raporları oluşturun.", icon: BarChart2, visual: "Report Builder" }
     ],
     cta: "Demo Talep Et",
     modalType: 'demo'
@@ -97,9 +93,9 @@ const solutionsData = {
     description: "Trafiğinizi en verimli şekilde gelire dönüştürün. Yüksek dönüşümlü markalarla çalışın ve detaylı link analizleriyle içeriğinizi güçlendirin.",
     features: ["İçerik performans takibi", "Derin linkleme (Deep-linking)", "Şeffaf gelir görünürlüğü"],
     capabilities: [
-      { title: "Link Oluşturucu", desc: "Tarayıcı eklentisi veya panel üzerinden saniyeler içinde takip edilebilir linkler yaratın.", icon: <Paperclip size={20}/>, visual: "Link Tool" },
-      { title: "Anlık Bildirimler", desc: "Dönüşüm gerçekleştiğinde veya kampanya koşulları değiştiğinde anında haberdar olun.", icon: <Bell size={20}/>, visual: "Notification Center" },
-      { title: "API Entegrasyonu", desc: "Verilerinizi kendi sistemlerinize aktarmak için güçlü API desteğinden yararlanın.", icon: <Zap size={20}/>, visual: "API Docs" }
+      { title: "Link Oluşturucu", desc: "Tarayıcı eklentisi veya panel üzerinden saniyeler içinde takip edilebilir linkler yaratın.", icon: Paperclip, visual: "Link Tool" },
+      { title: "Anlık Bildirimler", desc: "Dönüşüm gerçekleştiğinde veya kampanya koşulları değiştiğinde anında haberdar olun.", icon: Bell, visual: "Notification Center" },
+      { title: "API Entegrasyonu", desc: "Verilerinizi kendi sistemlerinize aktarmak için güçlü API desteğinden yararlanın.", icon: Zap, visual: "API Docs" }
     ],
     cta: "Demo Talep Et",
     modalType: 'demo'
@@ -112,9 +108,9 @@ const solutionsData = {
     description: "Hangi içeriğin ne kadar kazandırdığını net bir şekilde görün. Markalarla doğrudan iletişim kurun ve ödemelerinizi garanti altına alın.",
     features: ["Tek panel yönetimi", "Gelir ve ödeme takibi", "Performans analizi"],
     capabilities: [
-      { title: "Medya Kiti", desc: "Profilinizi, istatistiklerinizi ve geçmiş iş birliklerinizi sergileyen profesyonel bir vitrin.", icon: <Smartphone size={20}/>, visual: "Profile Card" },
-      { title: "İş Birliği Teklifleri", desc: "Markalardan gelen teklifleri inceleyin, pazarlık yapın ve onaylayın.", icon: <MessageSquare size={20}/>, visual: "Offer Chat" },
-      { title: "Kazanç Cüzdanı", desc: "Onaylanan komisyonlarınızı takip edin ve dilediğiniz zaman çekim talebi oluşturun.", icon: <PieChart size={20}/>, visual: "Wallet UI" }
+      { title: "Medya Kiti", desc: "Profilinizi, istatistiklerinizi ve geçmiş iş birliklerinizi sergileyen profesyonel bir vitrin.", icon: Smartphone, visual: "Profile Card" },
+      { title: "İş Birliği Teklifleri", desc: "Markalardan gelen teklifleri inceleyin, pazarlık yapın ve onaylayın.", icon: MessageSquare, visual: "Offer Chat" },
+      { title: "Kazanç Cüzdanı", desc: "Onaylanan komisyonlarınızı takip edin ve dilediğiniz zaman çekim talebi oluşturun.", icon: PieChart, visual: "Wallet UI" }
     ],
     cta: "Başvuru Yap",
     modalType: 'influencer'
@@ -222,17 +218,17 @@ const Navbar = ({ activePage, onNavigate, onOpenModal }) => {
         <div className="hidden lg:flex items-center gap-3">
           <button 
             onClick={() => onOpenModal('influencer')} 
-            className="text-sm font-semibold text-neutral-700 hover:text-neutral-900 px-5 py-2.5 rounded-lg border border-neutral-300 hover:border-neutral-400 transition-all font-inter"
+            className="text-sm font-semibold text-neutral-700 hover:text-neutral-900 px-5 py-2.5 rounded-full border border-neutral-300 hover:border-neutral-400 transition-all font-inter"
           >
             Influencer Başvuru
           </button>
           <button 
             onClick={() => onOpenModal('demo')} 
-            className="text-sm font-semibold text-neutral-700 hover:text-neutral-900 px-5 py-2.5 rounded-lg border border-neutral-300 hover:border-neutral-400 transition-all font-inter"
+            className="text-sm font-semibold text-neutral-700 hover:text-neutral-900 px-5 py-2.5 rounded-full border border-neutral-300 hover:border-neutral-400 transition-all font-inter"
           >
             Demo Talebi
           </button>
-          <button className="bg-neutral-900 hover:bg-neutral-800 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-all shadow-md font-inter">
+          <button className="bg-neutral-900 hover:bg-neutral-800 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-md font-inter">
             Giriş Yap
           </button>
         </div>
@@ -253,9 +249,9 @@ const Navbar = ({ activePage, onNavigate, onOpenModal }) => {
            <button onClick={() => handleNavClick('solutions', 'solutions-hero', 'publishers')} className="text-left text-sm text-neutral-600 pl-2 py-2">Yayıncılar için</button>
            <button onClick={() => handleNavClick('solutions', 'solutions-hero', 'influencers')} className="text-left text-sm text-neutral-600 pl-2 py-2">Influencerlar için</button>
            <div className="h-px bg-neutral-100 my-2"></div>
-           <button onClick={() => onOpenModal('influencer')} className="w-full border border-neutral-200 text-neutral-700 py-3 rounded-lg font-medium">Influencer Başvuru</button>
-           <button onClick={() => onOpenModal('demo')} className="w-full border border-neutral-200 text-neutral-700 py-3 rounded-lg font-medium">Demo Talebi</button>
-           <button className="w-full bg-neutral-900 text-white py-3 rounded-lg font-medium">Giriş Yap</button>
+           <button onClick={() => onOpenModal('influencer')} className="w-full border border-neutral-200 text-neutral-700 py-3 rounded-full font-medium">Influencer Başvuru</button>
+           <button onClick={() => onOpenModal('demo')} className="w-full border border-neutral-200 text-neutral-700 py-3 rounded-full font-medium">Demo Talebi</button>
+           <button className="w-full bg-neutral-900 text-white py-3 rounded-full font-medium">Giriş Yap</button>
         </div>
       )}
     </nav>
@@ -583,35 +579,19 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4 sm:px-0">
               <button 
                 onClick={() => onNavigate('connect')}
-                className="bg-neutral-900 hover:bg-neutral-800 text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-lg font-semibold text-base sm:text-lg transition-all shadow-lg flex items-center justify-center gap-2 font-inter"
+                className="bg-neutral-900 hover:bg-neutral-800 text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-full font-semibold text-base sm:text-lg transition-all shadow-lg flex items-center justify-center gap-2 font-inter"
               >
                 MDZN Connect'i Keşfet <ArrowRight size={18} />
               </button>
             </div>
             
-            {/* 
-              ============================================
-              📷 IMAGE PLACEHOLDER: Platform Hero Image
-              ============================================
-              To add your own image:
-              1. Place your image in: public/images/platform-hero.png
-              2. Replace the div below with:
-                 <img 
-                   src={IMAGES.hero.platform} 
-                   alt="MDZN Connect Platform" 
-                   className="mt-10 sm:mt-12 md:mt-16 mx-auto max-w-5xl rounded-xl sm:rounded-2xl border border-neutral-200 shadow-xl w-full"
-                 />
-              
-              Image path is defined in: src/IMAGES.js
-              Recommended: 1920x1080px or 16:9 aspect ratio PNG/JPG
-              ============================================
-            */}
-            <div className="mt-10 sm:mt-12 md:mt-16 mx-auto max-w-5xl bg-neutral-100 rounded-xl sm:rounded-2xl border border-neutral-200 aspect-[16/9] flex items-center justify-center relative overflow-hidden group">
-               <div className="absolute inset-0 bg-gradient-to-tr from-neutral-50/50 to-white/20"></div>
-               <div className="text-neutral-400 font-medium flex flex-col items-center">
-                  <Layers size={32} className="sm:w-12 sm:h-12 mb-2 sm:mb-4 text-neutral-300 group-hover:text-neutral-200 transition-colors" />
-                  <span className="text-sm sm:text-base">Platform Arayüz Görseli</span>
-               </div>
+            {/* Updated Image Section */}
+            <div className="mt-10 sm:mt-12 md:mt-16 mx-auto max-w-5xl bg-neutral-100 rounded-xl sm:rounded-2xl border border-neutral-200 overflow-hidden shadow-2xl">
+               <img 
+                 src={IMAGES.hero.platform} 
+                 alt="MDZN Connect Platform Arayüzü" 
+                 className="w-full h-auto block"
+               />
             </div>
           </div>
         </div>
@@ -648,7 +628,7 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
              </div>
 
              <div className="order-1 lg:order-2">
-               <div className="inline-block bg-neutral-900 text-white px-2.5 sm:px-3 py-1 rounded text-[10px] sm:text-xs font-bold tracking-wide mb-4 sm:mb-6 font-heading">
+               <div className="inline-block bg-neutral-900 text-white px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-wide mb-4 sm:mb-6 font-heading">
                  Ne yapıyoruz?
                </div>
                <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-4 sm:mb-6 leading-tight">
@@ -665,17 +645,20 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
                </div>
                <div className="space-y-3 sm:space-y-4">
                  {[
-                   { title: "Çok segmentli iş akışlarında bütüncül yaklaşım", icon: <Layers size={18}/> },
-                   { title: "Birbirine bağlı veriler ve paylaşımlı performans katmanları", icon: <RefreshCw size={18}/> },
-                   { title: "Birbiriyle konuşan ürün ekosistemi", icon: <MessageSquare size={18}/> }
-                 ].map((item,i) => (
-                   <div key={i} className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 border border-neutral-200 rounded-lg bg-neutral-50/50">
-                      <div className="p-2 sm:p-2.5 bg-white border border-neutral-200 text-neutral-700 rounded-lg shadow-sm flex-shrink-0">
-                        {item.icon}
-                      </div>
-                      <h4 className="font-bold text-neutral-900 text-xs sm:text-sm font-heading">{item.title}</h4>
-                   </div>
-                 ))}
+                   { title: "Çok segmentli iş akışlarında bütüncül yaklaşım", icon: Layers },
+                   { title: "Birbirine bağlı veriler ve paylaşımlı performans katmanları", icon: RotateCw },
+                   { title: "Birbiriyle konuşan ürün ekosistemi", icon: MessageSquare }
+                 ].map((item,i) => {
+                   const Icon = item.icon;
+                   return (
+                     <div key={i} className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 border border-neutral-200 rounded-lg bg-neutral-50/50">
+                        <div className="p-2 sm:p-2.5 bg-white border border-neutral-200 text-neutral-700 rounded-lg shadow-sm flex-shrink-0">
+                          <Icon size={18} />
+                        </div>
+                        <h4 className="font-bold text-neutral-900 text-xs sm:text-sm font-heading">{item.title}</h4>
+                     </div>
+                   );
+                 })}
                </div>
              </div>
           </div>
@@ -715,67 +698,149 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
 
       {/* NEW: Influencer Funnel Section for Homepage */}
       <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-white border-t border-neutral-100">
-         <div className="max-w-7xl mx-auto text-center">
-            <div className="max-w-4xl mx-auto">
-              <div className="inline-block bg-neutral-50 text-neutral-700 text-[10px] sm:text-xs font-bold px-3 sm:px-4 py-1 sm:py-1.5 rounded mb-6 sm:mb-8 font-heading">
-                 Influencerlar İçin
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-neutral-900 mb-4 sm:mb-6">Potansiyelini Gelire Dönüştür</h2>
-              <p className="text-neutral-600 text-base sm:text-lg mb-8 sm:mb-12 px-2 sm:px-0">
-                 İş birliklerinizi yönetin, kazançlarınızı takip edin ve performansınızı tek panelden görün. Hızlı başvuru, net kazanç.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-x-8 sm:gap-y-4 max-w-2xl mx-auto mb-8 sm:mb-12 text-left">
-                 <div className="flex items-center gap-3">
-                    <div className="p-1.5 sm:p-2 bg-neutral-100 rounded-full text-neutral-600"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
-                    <span className="font-medium text-neutral-700 text-sm sm:text-base">Şeffaf Ödeme</span>
-                 </div>
-                 <div className="flex items-center gap-3">
-                    <div className="p-1.5 sm:p-2 bg-neutral-100 rounded-full text-neutral-600"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
-                    <span className="font-medium text-neutral-700 text-sm sm:text-base">Influencer Paneli</span>
-                 </div>
-                 <div className="flex items-center gap-3">
-                    <div className="p-1.5 sm:p-2 bg-neutral-100 rounded-full text-neutral-600"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
-                    <span className="font-medium text-neutral-700 text-sm sm:text-base">Kazanç Takibi</span>
-                 </div>
-                 <div className="flex items-center gap-3">
-                    <div className="p-1.5 sm:p-2 bg-neutral-100 rounded-full text-neutral-600"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
-                    <span className="font-medium text-neutral-700 text-sm sm:text-base">Hızlı Başvuru Akışı</span>
-                 </div>
-              </div>
+         <div className="max-w-7xl mx-auto">
+            <div className="relative bg-neutral-50 border border-neutral-200 rounded-[2.5rem] overflow-hidden">
+               {/* Background Pattern */}
+               <div className="absolute inset-0 bg-[radial-gradient(#e5e5e5_1px,transparent_1px)] [background-size:20px_20px] opacity-70 pointer-events-none"></div>
+               
+               {/* Decorative Glow */}
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-neutral-200/50 rounded-full blur-3xl pointer-events-none"></div>
 
-              <button onClick={() => onOpenModal('influencer')} className="bg-neutral-900 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-bold hover:bg-neutral-800 transition-colors mb-10 sm:mb-16 shadow-lg shadow-neutral-200 font-inter text-sm sm:text-base">
-                 Hemen Başvur
-              </button>
-
-              {/* 
-                ============================================
-                📷 IMAGE PLACEHOLDER: Influencer Panel
-                ============================================
-                To add your own image:
-                1. Place your image in: public/images/influencer-panel.png
-                2. Replace the div below with:
-                   <img 
-                     src={IMAGES.home.influencerPanel} 
-                     alt="Influencer Paneli" 
-                     className="w-full max-w-3xl mx-auto rounded-xl sm:rounded-2xl border border-neutral-200 shadow-xl sm:shadow-2xl"
-                   />
-                
-                Image path is defined in: src/IMAGES.js
-                Recommended: 1280x720px or 16:9 aspect ratio PNG/JPG
-                ============================================
-              */}
-              <div className="w-full max-w-3xl mx-auto aspect-video bg-neutral-50 border border-neutral-200 rounded-xl sm:rounded-2xl flex items-center justify-center relative overflow-hidden shadow-xl sm:shadow-2xl">
-                 <div className="absolute inset-0 bg-gradient-to-tr from-white to-neutral-50"></div>
-                 <div className="relative z-10 text-center">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-xl sm:rounded-2xl shadow-sm flex items-center justify-center mx-auto mb-3 sm:mb-4 text-neutral-500">
-                      <Smartphone size={24} className="sm:w-8 sm:h-8" />
+               {/* Content Wrapper */}
+               <div className="relative z-10 px-6 pt-12 pb-0 sm:px-12 sm:pt-20 text-center">
+                  <div className="max-w-4xl mx-auto">
+                    <div className="inline-block bg-white border border-neutral-200 text-neutral-700 text-[10px] sm:text-xs font-bold px-3 sm:px-4 py-1 sm:py-1.5 rounded-full mb-6 sm:mb-8 font-heading shadow-sm">
+                       Influencerlar İçin
                     </div>
-                    <span className="text-neutral-400 font-medium text-sm sm:text-base">Influencer Paneli Arayüzü</span>
-                 </div>
-                 <div className="absolute -top-10 -right-10 w-24 sm:w-40 h-24 sm:h-40 bg-neutral-500/5 rounded-full blur-3xl"></div>
-                 <div className="absolute -bottom-10 -left-10 w-24 sm:w-40 h-24 sm:h-40 bg-neutral-500/5 rounded-full blur-3xl"></div>
-              </div>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-neutral-900 mb-4 sm:mb-6">Potansiyelini Gelire Dönüştür</h2>
+                    <p className="text-neutral-600 text-base sm:text-lg mb-8 sm:mb-12 px-2 sm:px-0 max-w-2xl mx-auto">
+                       İş birliklerinizi yönetin, kazançlarınızı takip edin ve performansınızı tek panelden görün. Hızlı başvuru, net kazanç.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-x-8 sm:gap-y-4 max-w-2xl mx-auto mb-8 sm:mb-12 text-left">
+                       <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
+                          <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
+                          <span className="font-medium text-neutral-700 text-sm sm:text-base">Şeffaf Ödeme</span>
+                       </div>
+                       <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
+                          <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
+                          <span className="font-medium text-neutral-700 text-sm sm:text-base">Influencer Paneli</span>
+                       </div>
+                       <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
+                          <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
+                          <span className="font-medium text-neutral-700 text-sm sm:text-base">Kazanç Takibi</span>
+                       </div>
+                       <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
+                          <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
+                          <span className="font-medium text-neutral-700 text-sm sm:text-base">Hızlı Başvuru Akışı</span>
+                       </div>
+                    </div>
+
+                    <button onClick={() => onOpenModal('influencer')} className="bg-neutral-900 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-bold hover:bg-neutral-800 transition-colors mb-10 sm:mb-12 shadow-lg shadow-neutral-200 font-inter text-sm sm:text-base">
+                       Hemen Başvur
+                    </button>
+                  </div>
+               </div>
+
+               {/* Phone Mockup Area */}
+               <div className="relative z-10 flex justify-center mt-4 sm:mt-8">
+                  {/* Phone Frame */}
+                  <div className="relative w-[280px] sm:w-[300px] h-[500px] sm:h-[580px] bg-white border-[8px] border-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl overflow-hidden flex flex-col translate-y-12 sm:translate-y-16">
+                      {/* Notch */}
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-5 sm:h-6 w-20 sm:w-24 bg-neutral-900 rounded-b-xl z-20"></div>
+                      
+                      {/* Screen */}
+                      <div className="flex-1 bg-neutral-50 pt-8 sm:pt-10 pb-0 px-4 flex flex-col overflow-hidden relative">
+                         {/* App Header */}
+                         <div className="flex items-center justify-between mb-4 sm:mb-6">
+                            <div className="text-left">
+                               <div className="text-[10px] text-neutral-400">Hoş geldin,</div>
+                               <div className="text-sm font-bold text-neutral-800">Melis Yılmaz</div>
+                            </div>
+                            <div className="w-8 h-8 bg-neutral-200 rounded-full border border-white shadow-sm flex items-center justify-center">
+                               <Users size={14} className="text-neutral-400" />
+                            </div>
+                         </div>
+
+                         {/* Balance Card */}
+                         <div className="bg-neutral-900 text-white p-4 rounded-2xl mb-4 sm:mb-6 shadow-lg text-left relative overflow-hidden">
+                            <div className="absolute top-0 right-0 p-4 opacity-10">
+                               <PieChart size={64} />
+                            </div>
+                            <div className="text-[10px] text-neutral-400 mb-1">Toplam Kazanç</div>
+                            <div className="text-2xl font-bold tracking-tight">₺12.450</div>
+                            <div className="mt-4 flex gap-2 items-center">
+                               <div className="h-1.5 flex-1 bg-neutral-700 rounded-full overflow-hidden">
+                                  <div className="h-full w-3/4 bg-green-400 rounded-full"></div>
+                               </div>
+                               <div className="text-[10px] text-green-400 font-bold">+%12</div>
+                            </div>
+                         </div>
+
+                         {/* Campaigns List */}
+                         <div className="flex-1 space-y-2 sm:space-y-3 overflow-hidden">
+                            <div className="flex justify-between items-end mb-1">
+                               <div className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Aktif Kampanyalar</div>
+                               <div className="text-[10px] text-neutral-400">Tümü</div>
+                            </div>
+                            
+                            {[
+                               { name: "Yaz İndirimi", brand: "Marka A", price: "₺1.200", icon: Zap, color: "bg-amber-100 text-amber-600" },
+                               { name: "Yeni Koleksiyon", brand: "Marka B", price: "₺850", icon: Globe, color: "bg-blue-100 text-blue-600" },
+                               { name: "Lansman", brand: "Marka C", price: "₺2.400", icon: Smartphone, color: "bg-purple-100 text-purple-600" }
+                            ].map((item, i) => {
+                               const ItemIcon = item.icon;
+                               return (
+                                 <div key={i} className="bg-white p-3 rounded-xl border border-neutral-100 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.05)] flex items-center gap-3">
+                                    <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg ${item.color} flex items-center justify-center flex-shrink-0`}>
+                                       <ItemIcon size={16} className="sm:w-[18px] sm:h-[18px]"/>
+                                    </div>
+                                    <div className="flex-1 text-left min-w-0">
+                                       <div className="text-xs font-bold text-neutral-800 truncate">{item.name}</div>
+                                       <div className="text-[10px] text-neutral-500 truncate">{item.brand}</div>
+                                    </div>
+                                    <div className="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-md">{item.price}</div>
+                                 </div>
+                               );
+                            })}
+                         </div>
+
+                         {/* Bottom Nav Mockup */}
+                         <div className="mt-4 h-12 sm:h-14 bg-white border-t border-neutral-100 flex items-center justify-around text-neutral-300 relative z-10 -mx-4 px-4">
+                            <div className="flex flex-col items-center gap-1 text-neutral-900">
+                               <Layers size={18} className="sm:w-5 sm:h-5" />
+                               <div className="w-1 h-1 bg-neutral-900 rounded-full"></div>
+                            </div>
+                            <div className="flex flex-col items-center gap-1 hover:text-neutral-500 transition-colors">
+                               <PieChart size={18} className="sm:w-5 sm:h-5" />
+                            </div>
+                            <div className="flex flex-col items-center gap-1 hover:text-neutral-500 transition-colors">
+                               <Bell size={18} className="sm:w-5 sm:h-5" />
+                            </div>
+                         </div>
+                      </div>
+                  </div>
+
+                  {/* Floating Widgets (Desktop Only) */}
+                  <div className="absolute top-20 -left-12 lg:-left-24 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 animate-in slide-in-from-left-4 duration-700 z-20">
+                     <div className="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                        <CheckCircle2 size={16} />
+                     </div>
+                     <div className="text-left">
+                        <div className="text-xs font-bold text-neutral-800">Ödeme Onaylandı</div>
+                        <div className="text-[10px] text-neutral-500">Az önce</div>
+                     </div>
+                  </div>
+                  <div className="absolute top-64 -right-12 lg:-right-24 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 animate-in slide-in-from-right-4 duration-1000 delay-300 z-20">
+                     <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                        <MessageSquare size={16} />
+                     </div>
+                     <div className="text-left">
+                        <div className="text-xs font-bold text-neutral-800">Yeni İş Birliği</div>
+                        <div className="text-[10px] text-neutral-500">Marka B'den teklif var</div>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </section>
@@ -790,7 +855,7 @@ const ConnectPage = ({ onOpenModal }) => {
       <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-4xl mx-auto mb-16 sm:mb-20 md:mb-24">
-             <div className="inline-block bg-neutral-500 text-white text-[10px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 rounded uppercase tracking-wider mb-4 sm:mb-6 font-heading">
+             <div className="inline-block bg-neutral-500 text-white text-[10px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full uppercase tracking-wider mb-4 sm:mb-6 font-heading">
                MDZN Connect
              </div>
              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-neutral-900 mb-4 sm:mb-6 leading-tight px-2 sm:px-0">
@@ -801,10 +866,10 @@ const ConnectPage = ({ onOpenModal }) => {
              </p>
 
              <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4 sm:px-0">
-                <button onClick={() => onOpenModal('demo')} className="bg-neutral-900 hover:bg-neutral-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded font-medium transition-colors font-inter text-sm sm:text-base">
+                <button onClick={() => onOpenModal('demo')} className="bg-neutral-900 hover:bg-neutral-800 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium transition-colors font-inter text-sm sm:text-base">
                   Demo Talep Et
                 </button>
-                <button onClick={() => onOpenModal('influencer')} className="bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-400 px-6 sm:px-8 py-2.5 sm:py-3 rounded font-medium transition-colors font-inter text-sm sm:text-base">
+                <button onClick={() => onOpenModal('influencer')} className="bg-white border border-neutral-300 text-neutral-700 hover:border-neutral-400 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium transition-colors font-inter text-sm sm:text-base">
                   Influencer Başvuru
                 </button>
              </div>
@@ -941,6 +1006,9 @@ const ConnectPage = ({ onOpenModal }) => {
 
            <div className="bg-neutral-900 text-white p-6 sm:p-8 md:p-10 lg:p-12 rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl relative overflow-hidden mt-10 sm:mt-12 md:mt-16 max-w-4xl mx-auto">
               <div className="relative z-10">
+                <div className="inline-block bg-neutral-800 border border-neutral-700 text-neutral-300 text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full mb-6 uppercase tracking-wider">
+                    MDZN Çözümü
+                </div>
                 <h3 className="text-xl sm:text-2xl font-heading font-bold mb-6 sm:mb-8">Nasıl Çözüyoruz?</h3>
                 <ul className="space-y-3 sm:space-y-4 mb-8 sm:mb-10">
                   {["Affiliate + influencer + kampanya tek panelde", "Gelir, komisyon ve dönüşüm gerçek zamanlı takip", "Otomasyon kurallarıyla operasyonel hız", "Partner katkısının şeffaf görünürlüğü", "Tüm ekipler için senkronize çalışma"].map((item, i) => (
@@ -950,7 +1018,7 @@ const ConnectPage = ({ onOpenModal }) => {
                       </li>
                   ))}
                 </ul>
-                <button onClick={() => onOpenModal('demo')} className="bg-white text-neutral-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-bold text-sm hover:bg-neutral-50 transition-colors font-inter">
+                <button onClick={() => onOpenModal('demo')} className="bg-white text-neutral-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-bold text-sm hover:bg-neutral-50 transition-colors font-inter">
                   Demo Talep Et
                 </button>
               </div>
@@ -1011,7 +1079,7 @@ const SolutionsPage = ({ initialTab, onOpenModal }) => {
           <div key={activeTab} className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center animate-fadeIn">
             {/* Left Content */}
             <div>
-              <div className="inline-block bg-white border border-neutral-200 text-neutral-800 text-[10px] sm:text-xs px-2.5 sm:px-3 py-1 rounded mb-3 sm:mb-4 font-heading font-bold uppercase tracking-wider shadow-sm">
+              <div className="inline-block bg-white border border-neutral-200 text-neutral-800 text-[10px] sm:text-xs px-2.5 sm:px-3 py-1 rounded-full mb-3 sm:mb-4 font-heading font-bold uppercase tracking-wider shadow-sm">
                 {currentData.title.toLocaleUpperCase('tr-TR')}
               </div>
               <h3 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-neutral-900 mb-6 leading-tight">
@@ -1034,7 +1102,7 @@ const SolutionsPage = ({ initialTab, onOpenModal }) => {
               
               <button 
                 onClick={() => onOpenModal(currentData.modalType)}
-                className="bg-neutral-900 hover:bg-neutral-800 text-white px-8 py-4 rounded-lg font-bold text-sm transition-all shadow-lg hover:shadow-xl font-inter flex items-center gap-2"
+                className="bg-neutral-900 hover:bg-neutral-800 text-white px-8 py-4 rounded-full font-bold text-sm transition-all shadow-lg hover:shadow-xl font-inter flex items-center gap-2"
               >
                 {currentData.cta} <ArrowRight className="w-4 h-4" />
               </button>
@@ -1119,27 +1187,30 @@ const SolutionsPage = ({ initialTab, onOpenModal }) => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-               {currentData.capabilities.map((cap, idx) => (
-                  <div key={idx} className="bg-neutral-50 rounded-xl border border-neutral-100 overflow-hidden hover:border-neutral-300 transition-all duration-300 group">
-                     {/* Mini Screen Preview */}
-                     <div className="aspect-[16/9] bg-neutral-200 relative overflow-hidden flex items-center justify-center">
-                        <div className="absolute inset-0 bg-neutral-900/5 group-hover:bg-neutral-900/0 transition-colors"></div>
-                        <span className="font-heading font-bold text-neutral-400 text-sm">{cap.visual}</span>
-                        {/* Decorative overlay */}
-                        <div className="absolute inset-0 border-b-4 border-neutral-900/10"></div>
-                     </div>
-                     
-                     <div className="p-6">
-                        <div className="w-10 h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center text-neutral-900 mb-4 shadow-sm group-hover:scale-110 transition-transform">
-                           {cap.icon}
-                        </div>
-                        <h4 className="text-lg font-bold text-neutral-900 mb-2">{cap.title}</h4>
-                        <p className="text-sm text-neutral-600 leading-relaxed">
-                           {cap.desc}
-                        </p>
-                     </div>
-                  </div>
-               ))}
+               {currentData.capabilities.map((cap, idx) => {
+                  const Icon = cap.icon;
+                  return (
+                    <div key={idx} className="bg-neutral-50 rounded-xl border border-neutral-100 overflow-hidden hover:border-neutral-300 transition-all duration-300 group">
+                       {/* Mini Screen Preview */}
+                       <div className="aspect-[16/9] bg-neutral-200 relative overflow-hidden flex items-center justify-center">
+                          <div className="absolute inset-0 bg-neutral-900/5 group-hover:bg-neutral-900/0 transition-colors"></div>
+                          <span className="font-heading font-bold text-neutral-400 text-sm">{cap.visual}</span>
+                          {/* Decorative overlay */}
+                          <div className="absolute inset-0 border-b-4 border-neutral-900/10"></div>
+                       </div>
+                       
+                       <div className="p-6">
+                          <div className="w-10 h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center text-neutral-900 mb-4 shadow-sm group-hover:scale-110 transition-transform">
+                             <Icon size={20} />
+                          </div>
+                          <h4 className="text-lg font-bold text-neutral-900 mb-2">{cap.title}</h4>
+                          <p className="text-sm text-neutral-600 leading-relaxed">
+                             {cap.desc}
+                          </p>
+                       </div>
+                    </div>
+                  );
+               })}
             </div>
          </div>
       </section>
@@ -1237,11 +1308,11 @@ const App = () => {
            <p className="text-neutral-600 mb-8 sm:mb-10 text-sm sm:text-base">Hangi Rolde Olursanız Olun, MDZN Partners Yanınızda</p>
             
            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 md:gap-6 px-4 sm:px-0">
-              <button onClick={() => setActiveModal('demo')} className="bg-neutral-900 hover:bg-neutral-800 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 rounded font-medium transition-colors font-inter text-sm sm:text-base">
+              <button onClick={() => setActiveModal('demo')} className="bg-neutral-900 hover:bg-neutral-800 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 rounded-full font-medium transition-colors font-inter text-sm sm:text-base">
                  Demo Talep Et
               </button>
               {currentPage !== 'connect' && (
-                <button onClick={() => navigate('connect')} className="border border-neutral-800 text-neutral-900 px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 rounded font-medium hover:bg-neutral-50 transition-colors font-inter text-sm sm:text-base">
+                <button onClick={() => navigate('connect')} className="border border-neutral-800 text-neutral-900 px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 rounded-full font-medium hover:bg-neutral-50 transition-colors font-inter text-sm sm:text-base">
                    MDZN Connect'i Keşfet
                 </button>
               )}
