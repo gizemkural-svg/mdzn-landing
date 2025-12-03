@@ -1,31 +1,36 @@
 /*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                           MDZN LANDING PAGE                                   ║
+║                                                                              ║
+║  Structure:                                                                  ║
+║  ├── 1. IMPORTS & CONFIGURATION                                              ║
+║  ├── 2. SHARED COMPONENTS (Navbar, Footer, LogoStrip, Modal)                 ║
+║  ├── 3. PAGE: HOME (HomePage)                                                ║
+║  ├── 4. PAGE: CONNECT (ConnectPage)                                          ║
+║  ├── 5. PAGE: SOLUTIONS (SolutionsPage)                                      ║
+║  └── 6. APP ORCHESTRATOR (Main App)                                          ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+
+/*
 ================================================================================
-📷 IMAGE UPLOAD GUIDE - MDZN Landing Page
+📷 IMAGE UPLOAD GUIDE
 ================================================================================
-
-HOW TO ADD YOUR OWN IMAGES:
-
-1. FOLDER LOCATION:
-   Place all images in: /public/images/
-   
-2. RECOMMENDED IMAGE NAMES & SIZES:
-   - platform-hero.png      → 1920x1080px (Hero section)
-   - ecosystem-visual.png   → 800x800px (Ne Yapıyoruz section)
-   - influencer-panel.png   → 1280x720px (Influencer section)
-   - dashboard-screenshot.png → 1200x900px (Connect page)
-   - campaign-flow.png      → 1200x900px (Connect page)
-   - earnings-report.png    → 1200x900px (Connect page)
-
-3. HOW TO USE:
-   After placing images in public/images/, reference them with:
-   <img src="/images/your-image-name.png" alt="Description" />
-
-4. SEARCH FOR PLACEHOLDERS:
-   Look for "📷 IMAGE PLACEHOLDER" comments throughout this file
-   to find all the locations where you can add images.
-
+Place images in: /public/images/
+Recommended sizes:
+  - platform-hero.png      → 1920x1080px
+  - ecosystem-visual.png   → 800x800px
+  - influencer-panel.png   → 1280x720px
+  - dashboard-screenshot.png → 1200x900px
+Search for "📷 IMAGE PLACEHOLDER" to find insertion points.
 ================================================================================
 */
+
+
+/* ============================================================================
+   1. IMPORTS & CONFIGURATION
+   ============================================================================ */
 
 import React, { useState, useEffect } from 'react';
 import { 
@@ -53,7 +58,7 @@ import {
 import { LOGOS } from './LOGOS';
 import { IMAGES } from './IMAGES';
 
-/* --- 1. DATA & CONFIG --- */
+/* --- Solutions Page Data Configuration --- */
 const solutionsData = {
   brands: {
     id: 'brands',
@@ -117,8 +122,11 @@ const solutionsData = {
   }
 };
 
-/* --- 2. SHARED COMPONENTS --- */
+/* ============================================================================
+   2. SHARED COMPONENTS
+   ============================================================================ */
 
+/* --- 2.1 MdznLogo --- */
 const MdznLogo = ({ className }) => (
   <svg 
     width="121" 
@@ -150,6 +158,7 @@ const MdznLogo = ({ className }) => (
   </svg>
 );
 
+/* --- 2.2 Navbar --- */
 const Navbar = ({ activePage, onNavigate, onOpenModal }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -258,7 +267,7 @@ const Navbar = ({ activePage, onNavigate, onOpenModal }) => {
   );
 };
 
-// ... (Footer, LOGOS, LogoStrip, Modal components same as before)
+/* --- 2.3 Footer --- */
 const Footer = ({ onNavigate }) => (
   <footer className="bg-black text-neutral-400 py-12 sm:py-16 px-4 sm:px-6">
     <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-12 sm:mb-16">
@@ -323,6 +332,7 @@ const Footer = ({ onNavigate }) => (
   </footer>
 );
 
+/* --- 2.4 LogoStrip (Partner Marquee) --- */
 const LogoStrip = () => {
   const partners = ["ikas", "onedio", "mynet", "webtekno", "paen", "proteinocean", "fropie", "wunder", "zeki", "miniso", "petzzshop"];
   const marqueeItems = [...partners, ...partners, ...partners];
@@ -360,6 +370,7 @@ const LogoStrip = () => {
   );
 };
 
+/* --- 2.5 Modal (Demo & Influencer Forms) --- */
 const Modal = ({ type, onClose }) => {
   const [phone, setPhone] = useState('');
   const [phoneError, setPhoneError] = useState('');
@@ -552,7 +563,11 @@ const Modal = ({ type, onClose }) => {
   );
 };
 
-/* --- PAGE 1: HOME PAGE --- */
+
+/* ============================================================================
+   3. PAGE: HOME
+   ============================================================================ */
+
 const HomePage = ({ onNavigate, onOpenModal }) => {
   const stats = [
     { val: "60m+", label: "Medya Gücü", icon: <Globe size={20} className="sm:w-6 sm:h-6 text-neutral-800 mb-2 mx-auto" />, desc: "Aktif mecra ve yayıncıların toplamda aylık eriştiği tekil kullanıcı sayısı" },
@@ -745,84 +760,23 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
                {/* Phone Mockup Area */}
                <div className="relative z-10 flex justify-center mt-4 sm:mt-8">
                   {/* Phone Frame */}
-                  <div className="relative w-[280px] sm:w-[300px] h-[500px] sm:h-[580px] bg-white border-[8px] border-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl overflow-hidden flex flex-col translate-y-12 sm:translate-y-16">
+                  <div className="relative w-[280px] sm:w-[300px] bg-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl overflow-hidden translate-y-12 sm:-translate-y-8">
                       {/* Notch */}
                       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-5 sm:h-6 w-20 sm:w-24 bg-neutral-900 rounded-b-xl z-20"></div>
                       
-                      {/* Screen */}
-                      <div className="flex-1 bg-neutral-50 pt-8 sm:pt-10 pb-0 px-4 flex flex-col overflow-hidden relative">
-                         {/* App Header */}
-                         <div className="flex items-center justify-between mb-4 sm:mb-6">
-                            <div className="text-left">
-                               <div className="text-[10px] text-neutral-400">Hoş geldin,</div>
-                               <div className="text-sm font-bold text-neutral-800">Melis Yılmaz</div>
-                            </div>
-                            <div className="w-8 h-8 bg-neutral-200 rounded-full border border-white shadow-sm flex items-center justify-center">
-                               <Users size={14} className="text-neutral-400" />
-                            </div>
-                         </div>
-
-                         {/* Balance Card */}
-                         <div className="bg-neutral-900 text-white p-4 rounded-2xl mb-4 sm:mb-6 shadow-lg text-left relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-4 opacity-10">
-                               <PieChart size={64} />
-                            </div>
-                            <div className="text-[10px] text-neutral-400 mb-1">Toplam Kazanç</div>
-                            <div className="text-2xl font-bold tracking-tight">₺12.450</div>
-                            <div className="mt-4 flex gap-2 items-center">
-                               <div className="h-1.5 flex-1 bg-neutral-700 rounded-full overflow-hidden">
-                                  <div className="h-full w-3/4 bg-green-400 rounded-full"></div>
-                               </div>
-                               <div className="text-[10px] text-green-400 font-bold">+%12</div>
-                            </div>
-                         </div>
-
-                         {/* Campaigns List */}
-                         <div className="flex-1 space-y-2 sm:space-y-3 overflow-hidden">
-                            <div className="flex justify-between items-end mb-1">
-                               <div className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Aktif Kampanyalar</div>
-                               <div className="text-[10px] text-neutral-400">Tümü</div>
-                            </div>
-                            
-                            {[
-                               { name: "Yaz İndirimi", brand: "Marka A", price: "₺1.200", icon: Zap, color: "bg-amber-100 text-amber-600" },
-                               { name: "Yeni Koleksiyon", brand: "Marka B", price: "₺850", icon: Globe, color: "bg-blue-100 text-blue-600" },
-                               { name: "Lansman", brand: "Marka C", price: "₺2.400", icon: Smartphone, color: "bg-purple-100 text-purple-600" }
-                            ].map((item, i) => {
-                               const ItemIcon = item.icon;
-                               return (
-                                 <div key={i} className="bg-white p-3 rounded-xl border border-neutral-100 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.05)] flex items-center gap-3">
-                                    <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg ${item.color} flex items-center justify-center flex-shrink-0`}>
-                                       <ItemIcon size={16} className="sm:w-[18px] sm:h-[18px]"/>
-                                    </div>
-                                    <div className="flex-1 text-left min-w-0">
-                                       <div className="text-xs font-bold text-neutral-800 truncate">{item.name}</div>
-                                       <div className="text-[10px] text-neutral-500 truncate">{item.brand}</div>
-                                    </div>
-                                    <div className="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-md">{item.price}</div>
-                                 </div>
-                               );
-                            })}
-                         </div>
-
-                         {/* Bottom Nav Mockup */}
-                         <div className="mt-4 h-12 sm:h-14 bg-white border-t border-neutral-100 flex items-center justify-around text-neutral-300 relative z-10 -mx-4 px-4">
-                            <div className="flex flex-col items-center gap-1 text-neutral-900">
-                               <Layers size={18} className="sm:w-5 sm:h-5" />
-                               <div className="w-1 h-1 bg-neutral-900 rounded-full"></div>
-                            </div>
-                            <div className="flex flex-col items-center gap-1 hover:text-neutral-500 transition-colors">
-                               <PieChart size={18} className="sm:w-5 sm:h-5" />
-                            </div>
-                            <div className="flex flex-col items-center gap-1 hover:text-neutral-500 transition-colors">
-                               <Bell size={18} className="sm:w-5 sm:h-5" />
-                            </div>
-                         </div>
-                      </div>
+                      {/* Phone Bezel (covers image edges) */}
+                      <div className="absolute inset-0 border-[8px] border-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] z-10 pointer-events-none"></div>
+                      
+                      {/* Screen Image */}
+                      <img 
+                        src={IMAGES.home.influencerPhoneMockup} 
+                        alt="MDZN Influencer Paneli" 
+                        className="w-full h-auto block"
+                      />
                   </div>
 
                   {/* Floating Widgets (Desktop Only) */}
-                  <div className="absolute top-20 -left-12 lg:-left-24 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 animate-in slide-in-from-left-4 duration-700 z-20">
+                  <div className="absolute top-20 left-[10rem] lg:left-[10rem] bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 animate-in slide-in-from-left-4 duration-700 z-20">
                      <div className="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
                         <CheckCircle2 size={16} />
                      </div>
@@ -831,7 +785,7 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
                         <div className="text-[10px] text-neutral-500">Az önce</div>
                      </div>
                   </div>
-                  <div className="absolute top-64 -right-12 lg:-right-24 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 animate-in slide-in-from-right-4 duration-1000 delay-300 z-20">
+                  <div className="absolute top-64 right-[10rem] lg:right-[10rem] bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 animate-in slide-in-from-right-4 duration-1000 delay-300 z-20">
                      <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
                         <MessageSquare size={16} />
                      </div>
@@ -848,7 +802,11 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
   );
 };
 
-/* --- PAGE 2: MDZN CONNECT PAGE --- */
+
+/* ============================================================================
+   4. PAGE: CONNECT (MDZN Connect)
+   ============================================================================ */
+
 const ConnectPage = ({ onOpenModal }) => {
   return (
     <div className="pt-16 sm:pt-20">
@@ -1032,7 +990,11 @@ const ConnectPage = ({ onOpenModal }) => {
   );
 };
 
-/* --- PAGE 3: SOLUTIONS PAGE (Segments + How it Works) --- */
+
+/* ============================================================================
+   5. PAGE: SOLUTIONS (Brands, Agencies, Publishers, Influencers)
+   ============================================================================ */
+
 const SolutionsPage = ({ initialTab, onOpenModal }) => {
   const [activeTab, setActiveTab] = useState(initialTab || 'brands');
 
@@ -1219,7 +1181,11 @@ const SolutionsPage = ({ initialTab, onOpenModal }) => {
   );
 };
 
-/* --- MAIN APP ORCHESTRATOR --- */
+
+/* ============================================================================
+   6. APP ORCHESTRATOR (Main App Component)
+   ============================================================================ */
+
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home'); 
   const [currentSolutionTab, setCurrentSolutionTab] = useState('brands');

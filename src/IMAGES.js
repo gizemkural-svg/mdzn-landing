@@ -37,6 +37,11 @@ export const IMAGES = {
     // Influencer panel screenshot
     // Recommended: 1280x720px or 16:9 aspect ratio PNG/JPG
     influencerPanel: "/images/influencer-panel.png",
+
+    // Influencer phone mockup screen image
+    // Recommended: 300x580px or similar phone screen ratio PNG/JPG
+    // This replaces the built-in UI in the phone mockup
+    influencerPhoneMockup: "/images/influencer-phone-mockup.jpg",
   },
 
   // ============================================
@@ -70,7 +75,7 @@ export const IMAGES = {
     publishers: "/images/solutions-publishers.png",
     
     // Influencer solutions visual
-    influencers: "/images/solutions-influencers.png",
+    influencers: "/images/solutions-influencers.jpg",
   },
 
   // ============================================
