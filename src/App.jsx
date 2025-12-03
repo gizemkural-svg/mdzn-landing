@@ -718,80 +718,85 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-neutral-200/50 rounded-full blur-3xl pointer-events-none"></div>
 
                {/* Content Wrapper */}
-               <div className="relative z-10 px-6 pt-12 pb-0 sm:px-12 sm:pt-20 text-center">
-                  <div className="max-w-4xl mx-auto">
-                    <div className="inline-block bg-white border border-neutral-200 text-neutral-700 text-[10px] sm:text-xs font-bold px-3 sm:px-4 py-1 sm:py-1.5 rounded-full mb-6 sm:mb-8 font-heading shadow-sm">
-                       Influencerlar İçin
-                    </div>
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-neutral-900 mb-4 sm:mb-6">Potansiyelini Gelire Dönüştür</h2>
-                    <p className="text-neutral-600 text-base sm:text-lg mb-8 sm:mb-12 px-2 sm:px-0 max-w-2xl mx-auto">
-                       İş birliklerinizi yönetin, kazançlarınızı takip edin ve performansınızı tek panelden görün. Hızlı başvuru, net kazanç.
-                    </p>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-x-8 sm:gap-y-4 max-w-2xl mx-auto mb-8 sm:mb-12 text-left">
-                       <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
-                          <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
-                          <span className="font-medium text-neutral-700 text-sm sm:text-base">Şeffaf Ödeme</span>
-                       </div>
-                       <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
-                          <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
-                          <span className="font-medium text-neutral-700 text-sm sm:text-base">Influencer Paneli</span>
-                       </div>
-                       <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
-                          <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
-                          <span className="font-medium text-neutral-700 text-sm sm:text-base">Kazanç Takibi</span>
-                       </div>
-                       <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
-                          <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
-                          <span className="font-medium text-neutral-700 text-sm sm:text-base">Hızlı Başvuru Akışı</span>
-                       </div>
-                    </div>
+               <div className="relative z-10 px-6 pt-12 pb-12 sm:px-12 sm:pt-20 sm:pb-20">
+                  <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                     {/* Left: Hero Text Content */}
+                     <div className="text-center lg:text-left">
+                        <div className="inline-block bg-white border border-neutral-200 text-neutral-700 text-[10px] sm:text-xs font-bold px-3 sm:px-4 py-1 sm:py-1.5 rounded-full mb-6 sm:mb-8 font-heading shadow-sm">
+                           Influencerlar İçin
+                        </div>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-neutral-900 mb-4 sm:mb-6">Potansiyelini Gelire Dönüştür</h2>
+                        <p className="text-neutral-600 text-base sm:text-lg mb-8 sm:mb-12 px-2 sm:px-0 max-w-2xl lg:max-w-none mx-auto lg:mx-0">
+                           İş birliklerinizi yönetin, kazançlarınızı takip edin ve performansınızı tek panelden görün. Hızlı başvuru, net kazanç.
+                        </p>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-x-8 sm:gap-y-4 max-w-2xl lg:max-w-none mx-auto lg:mx-0 mb-8 sm:mb-12 text-left">
+                           <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
+                              <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
+                              <span className="font-medium text-neutral-700 text-sm sm:text-base">Şeffaf Ödeme</span>
+                           </div>
+                           <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
+                              <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
+                              <span className="font-medium text-neutral-700 text-sm sm:text-base">Influencer Paneli</span>
+                           </div>
+                           <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
+                              <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
+                              <span className="font-medium text-neutral-700 text-sm sm:text-base">Kazanç Takibi</span>
+                           </div>
+                           <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
+                              <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
+                              <span className="font-medium text-neutral-700 text-sm sm:text-base">Hızlı Başvuru Akışı</span>
+                           </div>
+                        </div>
 
-                    <button onClick={() => onOpenModal('influencer')} className="bg-neutral-900 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-bold hover:bg-neutral-800 transition-colors mb-10 sm:mb-12 shadow-lg shadow-neutral-200 font-inter text-sm sm:text-base">
-                       Hemen Başvur
-                    </button>
-                  </div>
-               </div>
+                        <div className="flex justify-center lg:justify-start">
+                           <button onClick={() => onOpenModal('influencer')} className="bg-neutral-900 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-bold hover:bg-neutral-800 transition-colors shadow-lg shadow-neutral-200 font-inter text-sm sm:text-base">
+                              Hemen Başvur
+                           </button>
+                        </div>
+                     </div>
 
-               {/* Phone Mockup Area */}
-               <div className="relative z-10 flex justify-center mt-4 sm:mt-8 overflow-visible">
-                  {/* Phone Frame */}
-                  <div className="relative w-[280px] sm:w-[300px] bg-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl overflow-visible translate-y-12 sm:-translate-y-8">
-                      {/* Phone Inner Container (for overflow-hidden on image only) */}
-                      <div className="relative w-full h-full overflow-hidden rounded-[2.5rem] sm:rounded-[3rem]">
-                         {/* Notch */}
-                         <div className="absolute top-0 left-1/2 -translate-x-1/2 h-5 sm:h-6 w-20 sm:w-24 bg-neutral-900 rounded-b-xl z-20"></div>
-                         
-                         {/* Phone Bezel (covers image edges) */}
-                         <div className="absolute inset-0 border-[8px] border-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] z-10 pointer-events-none"></div>
-                         
-                         {/* Screen Image */}
-                         <img 
-                           src={IMAGES.home.influencerPhoneMockup} 
-                           alt="MDZN Influencer Paneli" 
-                           className="w-full h-auto block"
-                         />
-                      </div>
+                     {/* Right: Phone Mockup Area */}
+                     <div className="relative z-10 flex justify-center lg:justify-end overflow-visible">
+                        {/* Phone Frame */}
+                        <div className="relative w-[280px] sm:w-[300px] bg-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl overflow-visible lg:mr-12">
+                           {/* Phone Inner Container (for overflow-hidden on image only) */}
+                           <div className="relative w-full h-full overflow-hidden rounded-[2.5rem] sm:rounded-[3rem]">
+                              {/* Notch */}
+                              <div className="absolute top-0 left-1/2 -translate-x-1/2 h-5 sm:h-6 w-20 sm:w-24 bg-neutral-900 rounded-b-xl z-20"></div>
+                              
+                              {/* Phone Bezel (covers image edges) */}
+                              <div className="absolute inset-0 border-[8px] border-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] z-10 pointer-events-none"></div>
+                              
+                              {/* Screen Image */}
+                              <img 
+                                 src={IMAGES.home.influencerPhoneMockup} 
+                                 alt="MDZN Influencer Paneli" 
+                                 className="w-full h-auto block"
+                              />
+                           </div>
 
-                      {/* Floating Widgets (Hidden on mobile only) */}
-                      <div className="absolute top-32 -left-12 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 z-30">
-                        <div className="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
-                           <CheckCircle2 size={16} />
+                           {/* Floating Widgets (Hidden on mobile only) */}
+                           <div className="absolute top-32 -left-12 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 z-30">
+                              <div className="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                                 <CheckCircle2 size={16} />
+                              </div>
+                              <div className="text-left">
+                                 <div className="text-xs font-bold text-neutral-800">Ödeme Onaylandı</div>
+                                 <div className="text-[10px] text-neutral-500">Az önce</div>
+                              </div>
+                           </div>
+                           <div className="absolute top-64 -right-12 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 z-30">
+                              <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                                 <MessageSquare size={16} />
+                              </div>
+                              <div className="text-left">
+                                 <div className="text-xs font-bold text-neutral-800">Yeni İş Birliği</div>
+                                 <div className="text-[10px] text-neutral-500">Marka B'den teklif var</div>
+                              </div>
+                           </div>
                         </div>
-                        <div className="text-left">
-                           <div className="text-xs font-bold text-neutral-800">Ödeme Onaylandı</div>
-                           <div className="text-[10px] text-neutral-500">Az önce</div>
-                        </div>
-                      </div>
-                      <div className="absolute top-64 -right-12 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 z-30">
-                        <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
-                           <MessageSquare size={16} />
-                        </div>
-                        <div className="text-left">
-                           <div className="text-xs font-bold text-neutral-800">Yeni İş Birliği</div>
-                           <div className="text-[10px] text-neutral-500">Marka B'den teklif var</div>
-                        </div>
-                      </div>
+                     </div>
                   </div>
                </div>
             </div>
@@ -1074,14 +1079,14 @@ const SolutionsPage = ({ initialTab, onOpenModal }) => {
                /* Phone Mockup for Influencers */
                <div className="relative flex justify-center overflow-visible">
                   {/* Phone Frame */}
-                  <div className="relative w-[280px] sm:w-[320px] lg:w-[360px] bg-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl overflow-visible">
+                  <div className="relative w-[210px] sm:w-[240px] lg:w-[270px] bg-neutral-900 rounded-[1.875rem] sm:rounded-[2.25rem] shadow-2xl overflow-visible">
                      {/* Phone Inner Container (for overflow-hidden on image only) */}
-                     <div className="relative w-full h-full overflow-hidden rounded-[2.5rem] sm:rounded-[3rem]">
+                     <div className="relative w-full h-full overflow-hidden rounded-[1.875rem] sm:rounded-[2.25rem]">
                         {/* Notch */}
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-5 sm:h-6 w-20 sm:w-24 bg-neutral-900 rounded-b-xl z-20"></div>
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[15px] sm:h-[18px] w-[60px] sm:w-[72px] bg-neutral-900 rounded-b-xl z-20"></div>
                         
                         {/* Phone Bezel (covers image edges) */}
-                        <div className="absolute inset-0 border-[8px] border-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] z-10 pointer-events-none"></div>
+                        <div className="absolute inset-0 border-[6px] border-neutral-900 rounded-[1.875rem] sm:rounded-[2.25rem] z-10 pointer-events-none"></div>
                         
                         {/* Screen Image */}
                         {IMAGES.solutions && IMAGES.solutions[activeTab] ? (
@@ -1107,7 +1112,7 @@ const SolutionsPage = ({ initialTab, onOpenModal }) => {
                      </div>
 
                      {/* Floating Widgets (Hidden on mobile only) */}
-                     <div className="absolute top-32 -left-12 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 z-30">
+                     <div className="absolute top-24 -left-9 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 z-30">
                         <div className="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
                            <CheckCircle2 size={16} />
                         </div>
@@ -1116,7 +1121,7 @@ const SolutionsPage = ({ initialTab, onOpenModal }) => {
                            <div className="text-[10px] text-neutral-500">Az önce</div>
                         </div>
                      </div>
-                     <div className="absolute top-64 -right-12 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 z-30">
+                     <div className="absolute top-48 -right-9 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 z-30">
                         <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
                            <MessageSquare size={16} />
                         </div>
