@@ -54,7 +54,7 @@ export const IMAGES = {
 
     // Campaign flow/management screenshot
     // Recommended: 1200x900px or 4:3 aspect ratio PNG/JPG
-    campaignFlow: "/images/campaign-flow.png",
+    campaignFlow: "/images/campaign-flow.jpg",
 
     // Earnings/revenue report screenshot
     // Recommended: 1200x900px or 4:3 aspect ratio PNG/JPG
