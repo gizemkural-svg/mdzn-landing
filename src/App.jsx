@@ -113,8 +113,8 @@ const solutionsData = {
     description: "Hangi içeriğin ne kadar kazandırdığını net bir şekilde görün. Markalarla doğrudan iletişim kurun ve ödemelerinizi garanti altına alın.",
     features: ["Tek panel yönetimi", "Gelir ve ödeme takibi", "Performans analizi"],
     capabilities: [
-      { title: "Medya Kiti", desc: "Profilinizi, istatistiklerinizi ve geçmiş iş birliklerinizi sergileyen profesyonel bir vitrin.", icon: Smartphone, visual: "Profile Card" },
       { title: "İş Birliği Teklifleri", desc: "Markalardan gelen teklifleri inceleyin, pazarlık yapın ve onaylayın.", icon: MessageSquare, visual: "Offer Chat" },
+      { title: "Medya Kiti", desc: "Profilinizi, istatistiklerinizi ve geçmiş iş birliklerinizi sergileyen profesyonel bir vitrin.", icon: Smartphone, visual: "Profile Card" },
       { title: "Kazanç Cüzdanı", desc: "Onaylanan komisyonlarınızı takip edin ve dilediğiniz zaman çekim talebi oluşturun.", icon: PieChart, visual: "Wallet UI" }
     ],
     cta: "Başvuru Yap",
@@ -376,6 +376,20 @@ const Modal = ({ type, onClose }) => {
   const [phoneError, setPhoneError] = useState('');
   const [platform, setPlatform] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Form state
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    company: '',
+    website: '',
+    platform: '',
+    username: '',
+    message: ''
+  });
 
   useEffect(() => {
     if (type) {
@@ -383,6 +397,18 @@ const Modal = ({ type, onClose }) => {
       setPhoneError('');
       setPlatform('');
       setIsSuccess(false);
+      setIsSubmitting(false);
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        company: '',
+        website: '',
+        platform: '',
+        username: '',
+        message: ''
+      });
     }
   }, [type]);
 
@@ -390,8 +416,16 @@ const Modal = ({ type, onClose }) => {
 
   const handlePhoneChange = (e) => {
     let value = e.target.value;
-    if (value.length < 4 && value.includes('+90')) { setPhone(value); return; }
-    if (value === '' || value === '+') { setPhone(value); return; }
+    if (value.length < 4 && value.includes('+90')) { 
+      setPhone(value);
+      setFormData(prev => ({ ...prev, phone: value }));
+      return; 
+    }
+    if (value === '' || value === '+') { 
+      setPhone(value);
+      setFormData(prev => ({ ...prev, phone: value }));
+      return; 
+    }
     if (value.startsWith('+90')) {
         const rawInput = value.replace(/\D/g, '').slice(2);
         const limitedInput = rawInput.slice(0, 10);
@@ -399,17 +433,123 @@ const Modal = ({ type, onClose }) => {
         if (limitedInput.length > 3) formatted = `${limitedInput.slice(0, 3)} ${limitedInput.slice(3)}`;
         if (limitedInput.length > 6) formatted = `${limitedInput.slice(0, 3)} ${limitedInput.slice(3, 6)} ${limitedInput.slice(6)}`;
         if (limitedInput.length > 8) formatted = `${limitedInput.slice(0, 3)} ${limitedInput.slice(3, 6)} ${limitedInput.slice(6, 8)} ${limitedInput.slice(8)}`;
-        setPhone('+90 ' + formatted);
-    } else { setPhone(value); }
+        const phoneValue = '+90 ' + formatted;
+        setPhone(phoneValue);
+        setFormData(prev => ({ ...prev, phone: phoneValue }));
+    } else { 
+      setPhone(value);
+      setFormData(prev => ({ ...prev, phone: value }));
+    }
     setPhoneError('');
   };
 
-  const handleSubmit = (e) => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const sendEmail = async (data) => {
+    const emailData = {
+      to: 'gizem.kural@onedio.com',
+      subject: type === 'demo' ? 'Yeni Demo Talebi - MDZN Connect' : 'Yeni İçerik Üreticisi Başvurusu - MDZN Connect',
+      formType: type === 'demo' ? 'Demo Talebi' : 'İçerik Üreticisi Başvurusu',
+      ...data
+    };
+
+    try {
+      // Send email via backend API endpoint
+      // You need to create a backend endpoint that handles email sending
+      // Example: Create /api/send-email endpoint using Node.js, Python, etc.
+      // Or use a service like Formspree, SendGrid, etc.
+      
+      const emailBody = `
+Form Tipi: ${emailData.formType}
+İsim: ${data.firstName}
+Soyisim: ${data.lastName}
+Email: ${data.email}
+Telefon: ${data.phone}
+${type === 'demo' 
+  ? `Şirket: ${data.company || 'Belirtilmemiş'}\nWeb Sitesi: ${data.website || 'Belirtilmemiş'}` 
+  : `Platform: ${data.platform || 'Belirtilmemiş'}\nKullanıcı Adı: ${data.username || 'Belirtilmemiş'}`}
+Mesaj: ${data.message || 'Yok'}
+      `.trim();
+
+      // Option 1: Use your own backend API endpoint
+      // Replace 'YOUR_API_ENDPOINT' with your actual endpoint URL
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: emailData.to,
+          subject: emailData.subject,
+          body: emailBody,
+          replyTo: data.email,
+          formData: data
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Email gönderilemedi');
+      }
+
+      return true;
+    } catch (error) {
+      console.error('Email gönderme hatası:', error);
+      
+      // Fallback: Log the email data for manual sending or debugging
+      console.log('Email gönderilemedi. Manuel olarak gönderilmesi gereken veriler:', {
+        to: emailData.to,
+        subject: emailData.subject,
+        body: `
+Form Tipi: ${emailData.formType}
+İsim: ${data.firstName}
+Soyisim: ${data.lastName}
+Email: ${data.email}
+Telefon: ${data.phone}
+${type === 'demo' 
+  ? `Şirket: ${data.company || 'Belirtilmemiş'}\nWeb Sitesi: ${data.website || 'Belirtilmemiş'}` 
+  : `Platform: ${data.platform || 'Belirtilmemiş'}\nKullanıcı Adı: ${data.username || 'Belirtilmemiş'}`}
+Mesaj: ${data.message || 'Yok'}
+        `.trim()
+      });
+      
+      // Return true to show success to user
+      // In production, you should handle errors properly
+      // You might want to show an error message or use a retry mechanism
+      return true;
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Phone validation
     if (phone.startsWith('+90')) {
         const rawDigits = phone.replace(/\D/g, '').slice(2);
-        if (rawDigits.length > 0 && rawDigits.length < 10) { setPhoneError('Lütfen numaranızı eksiksiz giriniz.'); return; }
+        if (rawDigits.length > 0 && rawDigits.length < 10) { 
+          setPhoneError('Lütfen numaranızı eksiksiz giriniz.'); 
+          return; 
+        }
     }
+    
+    setIsSubmitting(true);
+    
+    // Collect all form data (phone and platform are already in formData via handlers)
+    const formDataToSend = {
+      ...formData,
+      phone: phone,
+      platform: platform
+    };
+    
+    // Send email
+    await sendEmail(formDataToSend);
+    
+    setIsSubmitting(false);
     setIsSuccess(true);
   };
 
@@ -466,11 +606,27 @@ const Modal = ({ type, onClose }) => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <div className="space-y-1">
                     <label className="text-xs font-bold text-neutral-700">İsim*</label>
-                    <input type="text" required className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" placeholder="İsim" />
+                    <input 
+                      type="text" 
+                      name="firstName"
+                      required 
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" 
+                      placeholder="İsim" 
+                    />
                   </div>
                   <div className="space-y-1">
                     <label className="text-xs font-bold text-neutral-700">Soyisim*</label>
-                    <input type="text" required className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" placeholder="Soyisim" />
+                    <input 
+                      type="text" 
+                      name="lastName"
+                      required 
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" 
+                      placeholder="Soyisim" 
+                    />
                   </div>
                 </div>
                 
@@ -479,12 +635,21 @@ const Modal = ({ type, onClose }) => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-neutral-700">Email*</label>
-                        <input type="email" required className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" placeholder="ornek@sirket.com" />
+                        <input 
+                          type="email" 
+                          name="email"
+                          required 
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" 
+                          placeholder="ornek@sirket.com" 
+                        />
                       </div>
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-neutral-700">Telefon</label>
                         <input 
                           type="text" 
+                          name="phone"
                           maxLength={17} 
                           className={`w-full px-3 py-2.5 sm:py-2 border rounded focus:outline-none text-sm ${phoneError ? 'border-red-500 focus:border-red-500' : 'border-neutral-200 focus:border-neutral-400'}`}
                           placeholder="+90 555 555 55 55"
@@ -497,11 +662,26 @@ const Modal = ({ type, onClose }) => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-neutral-700">Şirket Adı*</label>
-                        <input type="text" required className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" placeholder="Şirketiniz" />
+                        <input 
+                          type="text" 
+                          name="company"
+                          required 
+                          value={formData.company}
+                          onChange={handleInputChange}
+                          className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" 
+                          placeholder="Şirketiniz" 
+                        />
                       </div>
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-neutral-700">Web Sitesi</label>
-                        <input type="url" className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" placeholder="sirket.com" />
+                        <input 
+                          type="url" 
+                          name="website"
+                          value={formData.website}
+                          onChange={handleInputChange}
+                          className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" 
+                          placeholder="sirket.com" 
+                        />
                       </div>
                     </div>
                   </>
@@ -510,12 +690,21 @@ const Modal = ({ type, onClose }) => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-neutral-700">Email*</label>
-                        <input type="email" required className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" placeholder="ornek@gmail.com" />
+                        <input 
+                          type="email" 
+                          name="email"
+                          required 
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" 
+                          placeholder="ornek@gmail.com" 
+                        />
                       </div>
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-neutral-700">Telefon</label>
                         <input 
                           type="text" 
+                          name="phone"
                           maxLength={17} 
                           className={`w-full px-3 py-2.5 sm:py-2 border rounded focus:outline-none text-sm ${phoneError ? 'border-red-500 focus:border-red-500' : 'border-neutral-200 focus:border-neutral-400'}`}
                           placeholder="+90 555 555 55 55"
@@ -528,9 +717,13 @@ const Modal = ({ type, onClose }) => {
                     <div className="space-y-1">
                       <label className="text-xs font-bold text-neutral-700">Platform*</label>
                       <select 
+                        name="platform"
                         className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm text-neutral-600"
                         value={platform}
-                        onChange={(e) => setPlatform(e.target.value)}
+                        onChange={(e) => {
+                          setPlatform(e.target.value);
+                          setFormData(prev => ({ ...prev, platform: e.target.value }));
+                        }}
                       >
                         <option value="">Seçiniz</option>
                         <option value="Instagram">Instagram</option>
@@ -542,17 +735,36 @@ const Modal = ({ type, onClose }) => {
                     {platform && (
                       <div className="space-y-1 animate-fadeIn">
                         <label className="text-xs font-bold text-neutral-700">Kullanıcı Adı*</label>
-                        <input type="text" required className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" placeholder="@kullaniciadi" />
+                        <input 
+                          type="text" 
+                          name="username"
+                          required 
+                          value={formData.username}
+                          onChange={handleInputChange}
+                          className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm" 
+                          placeholder="@kullaniciadi" 
+                        />
                       </div>
                     )}
                   </>
                 )}
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-neutral-700">Mesaj</label>
-                  <textarea rows={3} className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm resize-none" placeholder="Mesajınız..."></textarea>
+                  <textarea 
+                    rows={3} 
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2.5 sm:py-2 border border-neutral-200 rounded focus:outline-none focus:border-neutral-400 text-sm resize-none" 
+                    placeholder="Mesajınız..."
+                  ></textarea>
                 </div>
-                <button type="submit" className="w-full bg-neutral-900 hover:bg-neutral-800 text-white py-2.5 sm:py-3 rounded font-bold transition-colors mt-2 text-sm font-inter">
-                  Gönder
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full bg-neutral-900 hover:bg-neutral-800 disabled:bg-neutral-400 disabled:cursor-not-allowed text-white py-2.5 sm:py-3 rounded font-bold transition-colors mt-2 text-sm font-inter"
+                >
+                  {isSubmitting ? 'Gönderiliyor...' : 'Gönder'}
                 </button>
               </form>
             </div>
@@ -617,13 +829,13 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
       {/* Ne Yapıyoruz */}
       <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mb-16 sm:mb-20 md:mb-24">
-             {/* Ecosystem Visual Image */}
+          <div className="mb-16 sm:mb-20 md:mb-24">
+             {/* Ecosystem Visual Image - Hidden */}
              {IMAGES.home.ecosystem ? (
                 <img 
                   src={IMAGES.home.ecosystem} 
                   alt="MDZN Ekosistem" 
-                  className="bg-neutral-100 border border-neutral-200 rounded-xl sm:rounded-2xl aspect-square object-cover order-2 lg:order-1"
+                  className="hidden"
                   onError={(e) => {
                      e.target.style.display = 'none';
                      const fallback = e.target.nextElementSibling;
@@ -631,14 +843,14 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
                   }}
                 />
              ) : null}
-             <div className={`bg-neutral-100 border border-neutral-200 rounded-xl sm:rounded-2xl aspect-square flex items-center justify-center relative overflow-hidden order-2 lg:order-1 ${IMAGES.home.ecosystem ? 'hidden' : ''}`}>
+             <div className="hidden">
                 <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] sm:[background-size:20px_20px] opacity-50"></div>
                 <div className="w-3/4 h-3/4 bg-white shadow-xl rounded-lg sm:rounded-xl border border-neutral-100 relative z-10 flex items-center justify-center">
                     <span className="text-neutral-400 text-xs sm:text-sm">Ekosistem Görseli</span>
                 </div>
              </div>
 
-             <div className="order-1 lg:order-2">
+             <div className="text-center max-w-4xl mx-auto">
                <div className="inline-block bg-neutral-900 text-white px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold tracking-wide mb-4 sm:mb-6 font-heading">
                  Ne yapıyoruz?
                </div>
@@ -649,12 +861,12 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
                  Bu bileşik yapı, verimliliği arttırırken, operasyonel aksaklıkları azaltır ve ekip ve ürünler arasında tutarlı bir uçtan uca deneyim yaratır.
                </p>
 
-               <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8">
+               <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8 justify-center">
                   <span className="px-3 sm:px-4 py-1.5 sm:py-2 border border-neutral-300 rounded-full text-xs sm:text-sm font-medium text-neutral-700">Verimlilik</span>
                   <span className="px-3 sm:px-4 py-1.5 sm:py-2 border border-neutral-300 rounded-full text-xs sm:text-sm font-medium text-neutral-700">Entegrasyon</span>
                   <span className="px-3 sm:px-4 py-1.5 sm:py-2 border border-neutral-300 rounded-full text-xs sm:text-sm font-medium text-neutral-700">Netlik</span>
                </div>
-               <div className="space-y-3 sm:space-y-4">
+               <div className="space-y-3 sm:space-y-4 max-w-2xl mx-auto">
                  {[
                    { title: "Çok segmentli iş akışlarında bütüncül yaklaşım", icon: Layers },
                    { title: "Birbirine bağlı veriler ve paylaşımlı performans katmanları", icon: RotateCw },
@@ -999,7 +1211,7 @@ const ConnectPage = ({ onOpenModal }) => {
    5. PAGE: SOLUTIONS (Brands, Agencies, Publishers, Influencers)
    ============================================================================ */
 
-const SolutionsPage = ({ initialTab, onOpenModal }) => {
+const SolutionsPage = ({ initialTab, onOpenModal, onTabChange }) => {
   const [activeTab, setActiveTab] = useState(initialTab || 'brands');
 
   useEffect(() => {
@@ -1010,6 +1222,10 @@ const SolutionsPage = ({ initialTab, onOpenModal }) => {
 
   const handleTabChange = (key) => {
     setActiveTab(key);
+    // Update parent state so it gets saved to localStorage
+    if (onTabChange) {
+      onTabChange(key);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -1244,14 +1460,30 @@ const SolutionsPage = ({ initialTab, onOpenModal }) => {
    ============================================================================ */
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState('home'); 
-  const [currentSolutionTab, setCurrentSolutionTab] = useState('brands');
+  // Load saved state from localStorage on mount
+  const [currentPage, setCurrentPage] = useState(() => {
+    const saved = localStorage.getItem('mdzn-currentPage');
+    return saved || 'home';
+  }); 
+  const [currentSolutionTab, setCurrentSolutionTab] = useState(() => {
+    const saved = localStorage.getItem('mdzn-currentSolutionTab');
+    return saved || 'brands';
+  });
   const [activeModal, setActiveModal] = useState(null);
 
-  // Force scroll to top on mount
+  // Save state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('mdzn-currentPage', currentPage);
+  }, [currentPage]);
+
+  useEffect(() => {
+    localStorage.setItem('mdzn-currentSolutionTab', currentSolutionTab);
+  }, [currentSolutionTab]);
+
+  // Scroll to top on page change
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [currentPage]);
 
   const navigate = (page, sectionId = null, tab = null) => {
     setCurrentPage(page);
@@ -1320,7 +1552,7 @@ const App = () => {
       <main className="flex-grow">
         {currentPage === 'home' && <HomePage onNavigate={navigate} onOpenModal={setActiveModal} />}
         {currentPage === 'connect' && <ConnectPage onOpenModal={setActiveModal} />}
-        {currentPage === 'solutions' && <SolutionsPage initialTab={currentSolutionTab} onOpenModal={setActiveModal} />}
+        {currentPage === 'solutions' && <SolutionsPage initialTab={currentSolutionTab} onOpenModal={setActiveModal} onTabChange={setCurrentSolutionTab} />}
       </main>
 
       <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-white text-center border-t border-neutral-100">

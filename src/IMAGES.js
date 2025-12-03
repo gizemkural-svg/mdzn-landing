@@ -70,7 +70,7 @@ export const IMAGES = {
     brands: "/images/solutions-brands.png",
     agencies: "/images/solutions-agencies.png",
     publishers: "/images/solutions-publishers.png",
-    influencers: "/images/solutions-influencers.png",
+    influencers: "/images/solutions-influencers.jpg",
     
     // Capability preview images (Mini Screen Previews)
     // Each solution has 3 capabilities with preview images
@@ -92,8 +92,8 @@ export const IMAGES = {
         "/images/capabilities/publishers-api.png",                  // API Entegrasyonu
       ],
       influencers: [
-        "/images/capabilities/influencers-media-kit.png",           // Medya Kiti
         "/images/capabilities/influencers-offers.png",             // İş Birliği Teklifleri
+        "/images/capabilities/influencers-media-kit.png",           // Medya Kiti
         "/images/capabilities/influencers-wallet.png",             // Kazanç Cüzdanı
       ],
     },
