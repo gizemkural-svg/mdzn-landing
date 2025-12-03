@@ -1070,45 +1070,105 @@ const SolutionsPage = ({ initialTab, onOpenModal }) => {
             </div>
             
             {/* Right Visual (Screenshot Image) */}
-            <div className="relative aspect-square lg:aspect-[4/3] bg-white border border-neutral-200 rounded-2xl shadow-xl overflow-hidden group">
-               {/* 
-                  ============================================
-                  📷 SCREENSHOT IMAGE: Solutions Page
-                  ============================================
-                  Displays different screenshots based on active tab:
-                  - brands: /images/solutions-brands.png
-                  - agencies: /images/solutions-agencies.png
-                  - publishers: /images/solutions-publishers.png
-                  - influencers: /images/solutions-influencers.jpg
-                  
-                  To add screenshots:
-                  1. Place images in: public/images/
-                  2. Paths are already configured in src/IMAGES.js
-                  3. Images will automatically display based on active tab
-                  
-                  Recommended sizes: 1200x900px (4:3 aspect ratio)
-                  ============================================
-               */}
-               {IMAGES.solutions && IMAGES.solutions[activeTab] ? (
-                  <img 
-                     src={IMAGES.solutions[activeTab]} 
-                     alt={`${currentData.title} - MDZN Connect Screenshot`}
-                     className="w-full h-full object-contain bg-neutral-50"
-                     onError={(e) => {
-                        e.target.style.display = 'none';
-                        e.target.nextElementSibling.style.display = 'flex';
-                     }}
-                  />
-               ) : null}
-               <div className={`w-full h-full bg-neutral-50 flex items-center justify-center ${IMAGES.solutions && IMAGES.solutions[activeTab] ? 'hidden' : ''}`}>
-                  <div className="text-center p-8">
-                     <div className="text-neutral-400 text-sm mb-2">📷 Screenshot Placeholder</div>
-                     <div className="text-neutral-300 text-xs">
-                        Add image: solutions-{activeTab}.png
+            {activeTab === 'influencers' ? (
+               /* Phone Mockup for Influencers */
+               <div className="relative flex justify-center overflow-visible">
+                  {/* Phone Frame */}
+                  <div className="relative w-[280px] sm:w-[320px] lg:w-[360px] bg-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl overflow-visible">
+                     {/* Phone Inner Container (for overflow-hidden on image only) */}
+                     <div className="relative w-full h-full overflow-hidden rounded-[2.5rem] sm:rounded-[3rem]">
+                        {/* Notch */}
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-5 sm:h-6 w-20 sm:w-24 bg-neutral-900 rounded-b-xl z-20"></div>
+                        
+                        {/* Phone Bezel (covers image edges) */}
+                        <div className="absolute inset-0 border-[8px] border-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] z-10 pointer-events-none"></div>
+                        
+                        {/* Screen Image */}
+                        {IMAGES.solutions && IMAGES.solutions[activeTab] ? (
+                           <img 
+                              src={IMAGES.solutions[activeTab]} 
+                              alt={`${currentData.title} - MDZN Connect Screenshot`}
+                              className="w-full h-auto block"
+                              onError={(e) => {
+                                 e.target.style.display = 'none';
+                                 const fallback = e.target.nextElementSibling;
+                                 if (fallback) fallback.style.display = 'flex';
+                              }}
+                           />
+                        ) : null}
+                        <div className={`w-full h-full bg-neutral-50 flex items-center justify-center ${IMAGES.solutions && IMAGES.solutions[activeTab] ? 'hidden' : ''}`}>
+                           <div className="text-center p-8">
+                              <div className="text-neutral-400 text-sm mb-2">📷 Screenshot Placeholder</div>
+                              <div className="text-neutral-300 text-xs">
+                                 Add image: solutions-{activeTab}.png
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                     {/* Floating Widgets (Hidden on mobile only) */}
+                     <div className="absolute top-32 -left-12 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 z-30">
+                        <div className="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                           <CheckCircle2 size={16} />
+                        </div>
+                        <div className="text-left">
+                           <div className="text-xs font-bold text-neutral-800">Ödeme Onaylandı</div>
+                           <div className="text-[10px] text-neutral-500">Az önce</div>
+                        </div>
+                     </div>
+                     <div className="absolute top-64 -right-12 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 z-30">
+                        <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                           <MessageSquare size={16} />
+                        </div>
+                        <div className="text-left">
+                           <div className="text-xs font-bold text-neutral-800">Yeni İş Birliği</div>
+                           <div className="text-[10px] text-neutral-500">Marka B'den teklif var</div>
+                        </div>
                      </div>
                   </div>
                </div>
-            </div>
+            ) : (
+               /* Regular Image Container for other tabs */
+               <div className="relative aspect-square lg:aspect-[4/3] bg-white border border-neutral-200 rounded-2xl shadow-xl overflow-hidden group">
+                  {/* 
+                     ============================================
+                     📷 SCREENSHOT IMAGE: Solutions Page
+                     ============================================
+                     Displays different screenshots based on active tab:
+                     - brands: /images/solutions-brands.png
+                     - agencies: /images/solutions-agencies.png
+                     - publishers: /images/solutions-publishers.png
+                     - influencers: /images/solutions-influencers.jpg
+                     
+                     To add screenshots:
+                     1. Place images in: public/images/
+                     2. Paths are already configured in src/IMAGES.js
+                     3. Images will automatically display based on active tab
+                     
+                     Recommended sizes: 1200x900px (4:3 aspect ratio)
+                     ============================================
+                  */}
+                  {IMAGES.solutions && IMAGES.solutions[activeTab] ? (
+                     <img 
+                        src={IMAGES.solutions[activeTab]} 
+                        alt={`${currentData.title} - MDZN Connect Screenshot`}
+                        className="w-full h-full object-contain bg-neutral-50"
+                        onError={(e) => {
+                           e.target.style.display = 'none';
+                           e.target.nextElementSibling.style.display = 'flex';
+                        }}
+                     />
+                  ) : null}
+                  <div className={`w-full h-full bg-neutral-50 flex items-center justify-center ${IMAGES.solutions && IMAGES.solutions[activeTab] ? 'hidden' : ''}`}>
+                     <div className="text-center p-8">
+                        <div className="text-neutral-400 text-sm mb-2">📷 Screenshot Placeholder</div>
+                        <div className="text-neutral-300 text-xs">
+                           Add image: solutions-{activeTab}.png
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            )}
           </div>
         </div>
       </section>
