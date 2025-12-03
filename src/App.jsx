@@ -944,19 +944,19 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
                         
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-x-8 sm:gap-y-4 max-w-2xl lg:max-w-none mx-auto lg:mx-0 mb-8 sm:mb-12 text-left">
                            <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
-                              <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
+                              <div className="p-1.5 sm:p-2 bg-green-100 rounded-full text-green-700 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
                               <span className="font-medium text-neutral-700 text-sm sm:text-base">Şeffaf Ödeme</span>
                            </div>
                            <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
-                              <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
+                              <div className="p-1.5 sm:p-2 bg-green-100 rounded-full text-green-700 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
                               <span className="font-medium text-neutral-700 text-sm sm:text-base">Influencer Paneli</span>
                            </div>
                            <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
-                              <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
+                              <div className="p-1.5 sm:p-2 bg-green-100 rounded-full text-green-700 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
                               <span className="font-medium text-neutral-700 text-sm sm:text-base">Kazanç Takibi</span>
                            </div>
                            <div className="flex items-center gap-3 bg-white/50 p-2 rounded-lg border border-neutral-100 sm:border-0 sm:bg-transparent sm:p-0">
-                              <div className="p-1.5 sm:p-2 bg-white sm:bg-neutral-100 rounded-full text-neutral-600 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
+                              <div className="p-1.5 sm:p-2 bg-green-100 rounded-full text-green-700 border border-neutral-100 sm:border-0"><CheckCircle2 size={18} className="sm:w-5 sm:h-5" /></div>
                               <span className="font-medium text-neutral-700 text-sm sm:text-base">Hızlı Başvuru Akışı</span>
                            </div>
                         </div>
@@ -1078,7 +1078,7 @@ const ConnectPage = ({ onOpenModal }) => {
                    subtitle: "Anlık veri akışı ile tüm kampanyalarınızın nabzını tutun. Hangi partnerin ne kadar trafik ve satış getirdiğini saniye saniye izleyin.", 
                    label: "Dashboard Ekran Görüntüsü",
                    bullets: ["Anlık trafik izleme", "Dönüşüm oranları analizi"],
-                   // image: IMAGES.connect.dashboard  // Uncomment when image is ready
+                   image: IMAGES.connect.dashboard
                  },
                  { 
                    icon: <Layers className="w-6 h-6"/>, 
@@ -1086,7 +1086,7 @@ const ConnectPage = ({ onOpenModal }) => {
                    subtitle: "Farklı kanalları ve partnerleri tek bir kampanya yapısında birleştirin. Karmaşık kurguları tek merkezden yönetmenin rahatlığını yaşayın.", 
                    label: "Kampanya Akış Ekranı",
                    bullets: ["Çoklu kanal yönetimi", "Otomatik kural setleri"],
-                   // image: IMAGES.connect.campaignFlow  // Uncomment when image is ready
+                   image: IMAGES.connect.campaignFlow
                  },
                  { 
                    icon: <PieChart className="w-6 h-6"/>, 
@@ -1094,7 +1094,7 @@ const ConnectPage = ({ onOpenModal }) => {
                    subtitle: "Doğrulanabilir ve şeffaf gelir verileriyle hem markalar hem de partnerler için güvenilir bir ekosistem oluşturun.", 
                    label: "Kazanç Raporu Ekranı",
                    bullets: ["Net hakediş raporları", "Otomatik ödeme planı"],
-                   // image: IMAGES.connect.earningsReport  // Uncomment when image is ready
+                   image: IMAGES.connect.earningsReport
                  }
                ].map((feat, idx) => (
                  <div key={idx} className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 md:gap-16 items-center`}>
@@ -1116,39 +1116,49 @@ const ConnectPage = ({ onOpenModal }) => {
                     </div>
 
                     {/* Image Side */}
-                    {/* 
-                      To use your own image:
-                      1. Add your image to public/images/
-                      2. Uncomment the "image" field in the features array above
-                      3. Replace this div with:
-                      
-                      {feat.image && (
-                        <div className="flex-1 w-full px-4 sm:px-0">
-                          <img 
-                            src={feat.image} 
-                            alt={feat.title} 
-                            className="w-full aspect-[4/3] object-cover rounded-2xl border border-neutral-200 shadow-lg hover:shadow-xl transition-all duration-500"
-                          />
-                        </div>
-                      )}
-                    */}
-                    <div className="flex-1 w-full px-4 sm:px-0">
-                       <div className="w-full aspect-[4/3] bg-white border border-neutral-200 rounded-2xl flex items-center justify-center relative overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500">
+                    {feat.image ? (
+                      <div className="flex-1 w-full px-4 sm:px-0">
+                        <img 
+                          src={feat.image} 
+                          alt={feat.title} 
+                          className="w-full aspect-[4/3] object-cover rounded-2xl border border-neutral-200 shadow-lg hover:shadow-xl transition-all duration-500"
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                            const fallback = e.target.nextElementSibling;
+                            if (fallback) fallback.style.display = 'flex';
+                          }}
+                        />
+                        <div className="hidden w-full aspect-[4/3] bg-white border border-neutral-200 rounded-2xl flex items-center justify-center relative overflow-hidden shadow-lg">
                           <div className="absolute inset-0 bg-neutral-50/50"></div>
-                          {/* Decorative Elements inside preview */}
                           <div className="absolute top-4 left-4 right-4 h-2 bg-neutral-100 rounded-full w-1/3"></div>
                           <div className="absolute top-8 left-4 right-4 h-32 bg-neutral-50 rounded-lg border border-neutral-100"></div>
-                          
                           <div className="absolute inset-0 flex items-center justify-center z-10">
-                             <div className="text-center transform group-hover:scale-105 transition-transform duration-500">
-                                <div className="w-16 h-16 bg-white rounded-2xl shadow-sm border border-neutral-100 flex items-center justify-center mx-auto mb-3 text-neutral-400">
-                                   {feat.icon}
-                                </div>
-                                <span className="text-neutral-400 font-medium text-sm">{feat.label}</span>
-                             </div>
+                            <div className="text-center">
+                              <div className="w-16 h-16 bg-white rounded-2xl shadow-sm border border-neutral-100 flex items-center justify-center mx-auto mb-3 text-neutral-400">
+                                {feat.icon}
+                              </div>
+                              <span className="text-neutral-400 font-medium text-sm">{feat.label}</span>
+                            </div>
                           </div>
-                       </div>
-                    </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex-1 w-full px-4 sm:px-0">
+                        <div className="w-full aspect-[4/3] bg-white border border-neutral-200 rounded-2xl flex items-center justify-center relative overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500">
+                          <div className="absolute inset-0 bg-neutral-50/50"></div>
+                          <div className="absolute top-4 left-4 right-4 h-2 bg-neutral-100 rounded-full w-1/3"></div>
+                          <div className="absolute top-8 left-4 right-4 h-32 bg-neutral-50 rounded-lg border border-neutral-100"></div>
+                          <div className="absolute inset-0 flex items-center justify-center z-10">
+                            <div className="text-center transform group-hover:scale-105 transition-transform duration-500">
+                              <div className="w-16 h-16 bg-white rounded-2xl shadow-sm border border-neutral-100 flex items-center justify-center mx-auto mb-3 text-neutral-400">
+                                {feat.icon}
+                              </div>
+                              <span className="text-neutral-400 font-medium text-sm">{feat.label}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
                  </div>
                ))}
@@ -1435,7 +1445,7 @@ const SolutionsPage = ({ initialTab, onOpenModal, onTabChange }) => {
                        </div>
                        
                        <div className="p-6">
-                          <div className="w-10 h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center text-neutral-900 mb-4 shadow-sm group-hover:scale-110 transition-transform">
+                          <div className="w-10 h-10 bg-white border border-neutral-200 rounded-lg flex items-center justify-center text-neutral-900 mb-4 shadow-sm group-hover:scale-110 transition-transform hidden">
                              <Icon size={20} />
                           </div>
                           <h4 className="text-lg font-bold text-neutral-900 mb-2">{cap.title}</h4>
