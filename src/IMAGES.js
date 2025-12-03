@@ -65,17 +65,38 @@ export const IMAGES = {
   // SOLUTIONS PAGE IMAGES
   // ============================================
   solutions: {
-    // Brand solutions visual
+    // Main hero screenshots for each solution type
+    // Recommended: 1200x900px (4:3 aspect ratio) PNG/JPG
     brands: "/images/solutions-brands.png",
-    
-    // Agency solutions visual
     agencies: "/images/solutions-agencies.png",
-    
-    // Publisher solutions visual
     publishers: "/images/solutions-publishers.png",
+    influencers: "/images/solutions-influencers.png",
     
-    // Influencer solutions visual
-    influencers: "/images/solutions-influencers.jpg",
+    // Capability preview images (Mini Screen Previews)
+    // Each solution has 3 capabilities with preview images
+    // Recommended: 640x360px (16:9 aspect ratio) PNG/JPG
+    capabilities: {
+      brands: [
+        "/images/capabilities/brands-partner-discovery.png",      // Partner Keşfi
+        "/images/capabilities/brands-brand-security.png",          // Marka Güvenliği
+        "/images/capabilities/brands-auto-payments.png",            // Otomatik Ödemeler
+      ],
+      agencies: [
+        "/images/capabilities/agencies-portfolio.png",              // Müşteri Portföyü
+        "/images/capabilities/agencies-permissions.png",            // Ekip İzinleri
+        "/images/capabilities/agencies-reports.png",                // Özel Raporlar
+      ],
+      publishers: [
+        "/images/capabilities/publishers-link-creator.png",         // Link Oluşturucu
+        "/images/capabilities/publishers-notifications.png",       // Anlık Bildirimler
+        "/images/capabilities/publishers-api.png",                  // API Entegrasyonu
+      ],
+      influencers: [
+        "/images/capabilities/influencers-media-kit.png",           // Medya Kiti
+        "/images/capabilities/influencers-offers.png",             // İş Birliği Teklifleri
+        "/images/capabilities/influencers-wallet.png",             // Kazanç Cüzdanı
+      ],
+    },
   },
 
   // ============================================

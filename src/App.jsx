@@ -618,24 +618,20 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
       <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mb-16 sm:mb-20 md:mb-24">
-             {/* 
-               ============================================
-               📷 IMAGE PLACEHOLDER: Ecosystem Visual
-               ============================================
-               To add your own image:
-               1. Place your image in: public/images/ecosystem-visual.png
-               2. Replace the div below with:
-                  <img 
-                    src={IMAGES.home.ecosystem} 
-                    alt="MDZN Ekosistem" 
-                    className="bg-neutral-100 border border-neutral-200 rounded-xl sm:rounded-2xl aspect-square object-cover order-2 lg:order-1"
-                  />
-               
-               Image path is defined in: src/IMAGES.js
-               Recommended: 800x800px square image PNG/JPG
-               ============================================
-             */}
-             <div className="bg-neutral-100 border border-neutral-200 rounded-xl sm:rounded-2xl aspect-square flex items-center justify-center relative overflow-hidden order-2 lg:order-1">
+             {/* Ecosystem Visual Image */}
+             {IMAGES.home.ecosystem ? (
+                <img 
+                  src={IMAGES.home.ecosystem} 
+                  alt="MDZN Ekosistem" 
+                  className="bg-neutral-100 border border-neutral-200 rounded-xl sm:rounded-2xl aspect-square object-cover order-2 lg:order-1"
+                  onError={(e) => {
+                     e.target.style.display = 'none';
+                     const fallback = e.target.nextElementSibling;
+                     if (fallback) fallback.style.display = 'flex';
+                  }}
+                />
+             ) : null}
+             <div className={`bg-neutral-100 border border-neutral-200 rounded-xl sm:rounded-2xl aspect-square flex items-center justify-center relative overflow-hidden order-2 lg:order-1 ${IMAGES.home.ecosystem ? 'hidden' : ''}`}>
                 <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] sm:[background-size:20px_20px] opacity-50"></div>
                 <div className="w-3/4 h-3/4 bg-white shadow-xl rounded-lg sm:rounded-xl border border-neutral-100 relative z-10 flex items-center justify-center">
                     <span className="text-neutral-400 text-xs sm:text-sm">Ekosistem Görseli</span>
@@ -758,41 +754,44 @@ const HomePage = ({ onNavigate, onOpenModal }) => {
                </div>
 
                {/* Phone Mockup Area */}
-               <div className="relative z-10 flex justify-center mt-4 sm:mt-8">
+               <div className="relative z-10 flex justify-center mt-4 sm:mt-8 overflow-visible">
                   {/* Phone Frame */}
-                  <div className="relative w-[280px] sm:w-[300px] bg-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl overflow-hidden translate-y-12 sm:-translate-y-8">
-                      {/* Notch */}
-                      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-5 sm:h-6 w-20 sm:w-24 bg-neutral-900 rounded-b-xl z-20"></div>
-                      
-                      {/* Phone Bezel (covers image edges) */}
-                      <div className="absolute inset-0 border-[8px] border-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] z-10 pointer-events-none"></div>
-                      
-                      {/* Screen Image */}
-                      <img 
-                        src={IMAGES.home.influencerPhoneMockup} 
-                        alt="MDZN Influencer Paneli" 
-                        className="w-full h-auto block"
-                      />
-                  </div>
+                  <div className="relative w-[280px] sm:w-[300px] bg-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl overflow-visible translate-y-12 sm:-translate-y-8">
+                      {/* Phone Inner Container (for overflow-hidden on image only) */}
+                      <div className="relative w-full h-full overflow-hidden rounded-[2.5rem] sm:rounded-[3rem]">
+                         {/* Notch */}
+                         <div className="absolute top-0 left-1/2 -translate-x-1/2 h-5 sm:h-6 w-20 sm:w-24 bg-neutral-900 rounded-b-xl z-20"></div>
+                         
+                         {/* Phone Bezel (covers image edges) */}
+                         <div className="absolute inset-0 border-[8px] border-neutral-900 rounded-[2.5rem] sm:rounded-[3rem] z-10 pointer-events-none"></div>
+                         
+                         {/* Screen Image */}
+                         <img 
+                           src={IMAGES.home.influencerPhoneMockup} 
+                           alt="MDZN Influencer Paneli" 
+                           className="w-full h-auto block"
+                         />
+                      </div>
 
-                  {/* Floating Widgets (Desktop Only) */}
-                  <div className="absolute top-20 left-[10rem] lg:left-[10rem] bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 animate-in slide-in-from-left-4 duration-700 z-20">
-                     <div className="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
-                        <CheckCircle2 size={16} />
-                     </div>
-                     <div className="text-left">
-                        <div className="text-xs font-bold text-neutral-800">Ödeme Onaylandı</div>
-                        <div className="text-[10px] text-neutral-500">Az önce</div>
-                     </div>
-                  </div>
-                  <div className="absolute top-64 right-[10rem] lg:right-[10rem] bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 animate-in slide-in-from-right-4 duration-1000 delay-300 z-20">
-                     <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
-                        <MessageSquare size={16} />
-                     </div>
-                     <div className="text-left">
-                        <div className="text-xs font-bold text-neutral-800">Yeni İş Birliği</div>
-                        <div className="text-[10px] text-neutral-500">Marka B'den teklif var</div>
-                     </div>
+                      {/* Floating Widgets (Hidden on mobile only) */}
+                      <div className="absolute top-32 -left-12 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 z-30">
+                        <div className="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                           <CheckCircle2 size={16} />
+                        </div>
+                        <div className="text-left">
+                           <div className="text-xs font-bold text-neutral-800">Ödeme Onaylandı</div>
+                           <div className="text-[10px] text-neutral-500">Az önce</div>
+                        </div>
+                      </div>
+                      <div className="absolute top-64 -right-12 bg-white p-3 rounded-xl shadow-xl border border-neutral-100 hidden md:flex items-center gap-3 z-30">
+                        <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                           <MessageSquare size={16} />
+                        </div>
+                        <div className="text-left">
+                           <div className="text-xs font-bold text-neutral-800">Yeni İş Birliği</div>
+                           <div className="text-[10px] text-neutral-500">Marka B'den teklif var</div>
+                        </div>
+                      </div>
                   </div>
                </div>
             </div>
@@ -1070,66 +1069,42 @@ const SolutionsPage = ({ initialTab, onOpenModal }) => {
               </button>
             </div>
             
-            {/* Right Visual (Enhanced Placeholder) */}
-            <div className="relative aspect-square lg:aspect-[4/3] bg-white border border-neutral-200 rounded-2xl shadow-xl overflow-hidden flex flex-col group">
-               {/* Header Bar */}
-               <div className="h-12 bg-neutral-50 border-b border-neutral-100 flex items-center px-4 gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                  <div className="w-3 h-3 rounded-full bg-amber-400"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                  <div className="ml-auto w-24 h-2 bg-neutral-200 rounded-full"></div>
-               </div>
-               
-               {/* Body Content Abstract */}
-               <div className="flex-1 p-6 relative">
-                  <div className="flex gap-6 h-full">
-                     {/* Sidebar Abstract */}
-                     <div className="w-16 h-full hidden sm:flex flex-col gap-4 border-r border-neutral-100 pr-4">
-                        <div className="w-8 h-8 rounded-lg bg-neutral-100"></div>
-                        <div className="w-8 h-8 rounded-lg bg-neutral-50"></div>
-                        <div className="w-8 h-8 rounded-lg bg-neutral-50"></div>
-                        <div className="mt-auto w-8 h-8 rounded-full bg-neutral-200"></div>
-                     </div>
-                     
-                     {/* Main Area Abstract */}
-                     <div className="flex-1 flex flex-col gap-4">
-                        <div className="flex justify-between items-end">
-                           <div className="w-32 h-6 bg-neutral-200 rounded"></div>
-                           <div className="w-24 h-8 bg-neutral-900 rounded"></div>
-                        </div>
-                        
-                        {/* Chart Area */}
-                        <div className="h-48 bg-neutral-50 rounded-xl border border-neutral-100 relative overflow-hidden">
-                           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-neutral-100 to-transparent"></div>
-                           <svg className="absolute bottom-0 left-0 right-0 w-full h-24 text-neutral-300" preserveAspectRatio="none">
-                              <path d="M0,80 C100,50 200,90 300,40 C400,10 500,60 600,20 L600,100 L0,100 Z" fill="currentColor" opacity="0.5" />
-                           </svg>
-                        </div>
-
-                        {/* Grid Rows */}
-                        <div className="space-y-2 mt-2">
-                           <div className="h-10 w-full bg-white border border-neutral-100 rounded flex items-center px-3 gap-3 shadow-sm">
-                              <div className="w-6 h-6 rounded-full bg-neutral-100"></div>
-                              <div className="w-1/3 h-2 bg-neutral-100 rounded"></div>
-                              <div className="ml-auto w-16 h-2 bg-neutral-100 rounded"></div>
-                           </div>
-                           <div className="h-10 w-full bg-white border border-neutral-100 rounded flex items-center px-3 gap-3 shadow-sm opacity-80">
-                              <div className="w-6 h-6 rounded-full bg-neutral-100"></div>
-                              <div className="w-1/3 h-2 bg-neutral-100 rounded"></div>
-                              <div className="ml-auto w-16 h-2 bg-neutral-100 rounded"></div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-
-                  {/* Floating Badge */}
-                  <div className="absolute bottom-6 right-6 bg-white border border-neutral-200 shadow-lg px-4 py-3 rounded-lg flex items-center gap-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                     <div className="p-2 bg-green-50 text-green-600 rounded-md">
-                        <TrendingUp size={20} />
-                     </div>
-                     <div>
-                        <div className="text-xs text-neutral-500 font-bold">ROI ARTIŞI</div>
-                        <div className="text-lg font-bold text-neutral-900">%245</div>
+            {/* Right Visual (Screenshot Image) */}
+            <div className="relative aspect-square lg:aspect-[4/3] bg-white border border-neutral-200 rounded-2xl shadow-xl overflow-hidden group">
+               {/* 
+                  ============================================
+                  📷 SCREENSHOT IMAGE: Solutions Page
+                  ============================================
+                  Displays different screenshots based on active tab:
+                  - brands: /images/solutions-brands.png
+                  - agencies: /images/solutions-agencies.png
+                  - publishers: /images/solutions-publishers.png
+                  - influencers: /images/solutions-influencers.jpg
+                  
+                  To add screenshots:
+                  1. Place images in: public/images/
+                  2. Paths are already configured in src/IMAGES.js
+                  3. Images will automatically display based on active tab
+                  
+                  Recommended sizes: 1200x900px (4:3 aspect ratio)
+                  ============================================
+               */}
+               {IMAGES.solutions && IMAGES.solutions[activeTab] ? (
+                  <img 
+                     src={IMAGES.solutions[activeTab]} 
+                     alt={`${currentData.title} - MDZN Connect Screenshot`}
+                     className="w-full h-full object-contain bg-neutral-50"
+                     onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextElementSibling.style.display = 'flex';
+                     }}
+                  />
+               ) : null}
+               <div className={`w-full h-full bg-neutral-50 flex items-center justify-center ${IMAGES.solutions && IMAGES.solutions[activeTab] ? 'hidden' : ''}`}>
+                  <div className="text-center p-8">
+                     <div className="text-neutral-400 text-sm mb-2">📷 Screenshot Placeholder</div>
+                     <div className="text-neutral-300 text-xs">
+                        Add image: solutions-{activeTab}.png
                      </div>
                   </div>
                </div>
@@ -1151,14 +1126,31 @@ const SolutionsPage = ({ initialTab, onOpenModal }) => {
             <div className="grid md:grid-cols-3 gap-8">
                {currentData.capabilities.map((cap, idx) => {
                   const Icon = cap.icon;
+                  const capabilityImage = IMAGES.solutions?.capabilities?.[activeTab]?.[idx];
                   return (
                     <div key={idx} className="bg-neutral-50 rounded-xl border border-neutral-100 overflow-hidden hover:border-neutral-300 transition-all duration-300 group">
                        {/* Mini Screen Preview */}
-                       <div className="aspect-[16/9] bg-neutral-200 relative overflow-hidden flex items-center justify-center">
-                          <div className="absolute inset-0 bg-neutral-900/5 group-hover:bg-neutral-900/0 transition-colors"></div>
-                          <span className="font-heading font-bold text-neutral-400 text-sm">{cap.visual}</span>
+                       <div className="aspect-[16/9] bg-neutral-200 relative overflow-hidden">
+                          {capabilityImage ? (
+                            <img 
+                              src={capabilityImage} 
+                              alt={`${cap.title} - Screenshot`}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                e.target.style.display = 'none';
+                                const fallback = e.target.nextElementSibling;
+                                if (fallback) fallback.style.display = 'flex';
+                              }}
+                            />
+                          ) : null}
+                          <div className={`absolute inset-0 flex items-center justify-center ${capabilityImage ? 'hidden' : ''}`}>
+                             <div className="text-center">
+                                <div className="absolute inset-0 bg-neutral-900/5 group-hover:bg-neutral-900/0 transition-colors"></div>
+                                <span className="relative font-heading font-bold text-neutral-400 text-sm">{cap.visual}</span>
+                             </div>
+                          </div>
                           {/* Decorative overlay */}
-                          <div className="absolute inset-0 border-b-4 border-neutral-900/10"></div>
+                          <div className="absolute inset-0 border-b-4 border-neutral-900/10 pointer-events-none"></div>
                        </div>
                        
                        <div className="p-6">
