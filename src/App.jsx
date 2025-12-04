@@ -237,9 +237,14 @@ const Navbar = ({ activePage, onNavigate, onOpenModal }) => {
           >
             Demo Talebi
           </button>
-          <button className="bg-neutral-900 hover:bg-neutral-800 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-md font-inter">
+          <a 
+            href="https://dashboard.mdznconnect.com/login" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="bg-neutral-900 hover:bg-neutral-800 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-md font-inter inline-block text-center"
+          >
             Giriş Yap
-          </button>
+          </a>
         </div>
 
         {/* Mobile Toggle */}
@@ -260,7 +265,14 @@ const Navbar = ({ activePage, onNavigate, onOpenModal }) => {
            <div className="h-px bg-neutral-100 my-2"></div>
            <button onClick={() => onOpenModal('influencer')} className="w-full border border-neutral-200 text-neutral-700 py-3 rounded-full font-medium">Influencer Başvuru</button>
            <button onClick={() => onOpenModal('demo')} className="w-full border border-neutral-200 text-neutral-700 py-3 rounded-full font-medium">Demo Talebi</button>
-           <button className="w-full bg-neutral-900 text-white py-3 rounded-full font-medium">Giriş Yap</button>
+           <a 
+             href="https://dashboard.mdznconnect.com/login" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             className="w-full bg-neutral-900 text-white py-3 rounded-full font-medium inline-block text-center"
+           >
+             Giriş Yap
+           </a>
         </div>
       )}
     </nav>
@@ -298,10 +310,16 @@ const Footer = ({ onNavigate }) => (
       <div>
         <h4 className="text-white font-heading font-bold text-sm mb-3 sm:mb-4">Şirket</h4>
         <ul className="space-y-2 sm:space-y-2 text-sm sm:text-xs">
-          <li className="cursor-pointer hover:text-white">Mediazone</li>
-          <li className="cursor-pointer hover:text-white">Kariyer & Basın</li>
+          <li className="cursor-pointer hover:text-white">
+            <a href="https://mediazonehq.com" target="_blank" rel="noopener noreferrer" className="hover:text-white">Mediazone</a>
+          </li>
+          <li className="cursor-pointer hover:text-white">
+            <a href="https://proj-assets.onedio.com/mediazone/Genel_Kurul_Metni.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-white">Kariyer & Basın</a>
+          </li>
           <li className="cursor-pointer hover:text-white">Blog</li>
-          <li className="cursor-pointer hover:text-white">İletişim</li>
+          <li className="cursor-pointer hover:text-white">
+            <a href="mailto:hello@mdznpartners.com" className="hover:text-white">İletişim</a>
+          </li>
         </ul>
       </div>
 
