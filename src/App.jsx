@@ -84,7 +84,7 @@ const solutionsData = {
     features: ["Çoklu marka/müşteri yönetimi", "Konsolide raporlama", "Beyaz etiket (White-label) seçenekleri"],
     capabilities: [
       { title: "Müşteri Portföyü", desc: "Tüm müşterilerinizin kampanyalarını tek bir dashboard üzerinden izleyin ve yönetin.", icon: Briefcase, visual: "Portfolio View" },
-      { title: "Ekip İzinleri", desc: "Farklı departmanlar ve müşteri temsilcileri için gelişmiş yetkilendirme sistemi.", icon: Users, visual: "Permissions Grid" },
+      { title: "Şeffaf ve Güvenilir Ödeme", desc: "Ödeme süreçlerini şeffaf ve güvenilir bir şekilde yönetin. Otomatik ödeme planlaması oluşturun ve detaylı gelir raporları ile yönetin.", icon: Users, visual: "Permissions Grid" },
       { title: "Özel Raporlar", desc: "Müşterileriniz için otomatik, markalı ve detaylı performans raporları oluşturun.", icon: BarChart2, visual: "Report Builder" }
     ],
     cta: "Demo Talep Et",
