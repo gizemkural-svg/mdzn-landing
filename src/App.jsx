@@ -1069,7 +1069,7 @@ const ConnectPage = ({ onOpenModal }) => {
 
           <div className="mb-16 sm:mb-20">
              <div className="text-center mb-16 sm:mb-20">
-               <h3 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-4">Gerçek Zamanlı Performans</h3>
+               <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-neutral-900 mb-4">Gerçek Zamanlı Performans</h2>
                <p className="text-neutral-600 text-sm sm:text-base px-2 sm:px-0 max-w-2xl mx-auto">Tüm gelir, dönüşüm ve partner etkisini anında görün. Kurulumdan optimizasyona tek akış.</p>
              </div>
 
@@ -1189,7 +1189,7 @@ const ConnectPage = ({ onOpenModal }) => {
       <section id="how-it-works" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-neutral-50 border-t border-neutral-200">
         <div className="max-w-7xl mx-auto">
            <div className="max-w-4xl mx-auto text-center lg:text-left">
-              <h3 className="text-2xl sm:text-3xl font-heading font-bold text-neutral-900 mb-6 sm:mb-8">Potansiyelinizi Kısıtlayan Engelleri Kaldırın</h3>
+              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-neutral-900 mb-6 sm:mb-8">Potansiyelinizi Kısıtlayan Engelleri Kaldırın</h2>
               <ul className="space-y-3 sm:space-y-4 inline-block text-left">
                 {[
                   "Dağınık süreçleri tek bir merkezden yönetin",
@@ -1292,9 +1292,9 @@ const SolutionsPage = ({ initialTab, onOpenModal, onTabChange }) => {
               <div className="inline-block bg-white border border-neutral-200 text-neutral-800 text-[10px] sm:text-xs px-2.5 sm:px-3 py-1 rounded-full mb-3 sm:mb-4 font-heading font-bold uppercase tracking-wider shadow-sm">
                 {currentData.title.toLocaleUpperCase('tr-TR')}
               </div>
-              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-neutral-900 mb-6 leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-neutral-900 mb-6 leading-tight">
                 {currentData.subtitle}
-              </h3>
+              </h2>
               <p className="text-neutral-600 text-lg mb-8 leading-relaxed">
                 {currentData.description}
               </p>
@@ -1426,7 +1426,7 @@ const SolutionsPage = ({ initialTab, onOpenModal, onTabChange }) => {
       <section className="bg-white py-16 sm:py-24 border-t border-neutral-200">
          <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-16">
-               <h3 className="text-2xl font-heading font-bold text-neutral-900 mb-4">Derinlemesine Bakış</h3>
+               <h2 className="text-2xl font-heading font-bold text-neutral-900 mb-4">Derinlemesine Bakış</h2>
                <p className="text-neutral-500 max-w-2xl mx-auto">
                   {currentData.title} özel geliştirilmiş araçlarla operasyonel süreçlerinizi nasıl kolaylaştırıyoruz?
                </p>
@@ -1554,6 +1554,26 @@ const App = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
+
+  // Update canonical URL (without query parameters)
+  useEffect(() => {
+    let canonicalUrl = 'https://www.mdzn.com.tr/';
+    
+    if (currentPage === 'connect') {
+      canonicalUrl = 'https://www.mdzn.com.tr/connect';
+    } else if (currentPage === 'solutions') {
+      canonicalUrl = `https://www.mdzn.com.tr/solutions/${currentSolutionTab}`;
+    }
+    
+    // Update or create canonical link
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', canonicalUrl);
+  }, [currentPage, currentSolutionTab]);
 
   const navigate = (page, sectionId = null, tab = null) => {
     setCurrentPage(page);
