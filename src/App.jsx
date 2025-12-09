@@ -1488,25 +1488,67 @@ const SolutionsPage = ({ initialTab, onOpenModal, onTabChange }) => {
    ============================================================================ */
 
 const App = () => {
-  // Load saved state from localStorage on mount
-  const [currentPage, setCurrentPage] = useState(() => {
-    const saved = localStorage.getItem('mdzn-currentPage');
-    return saved || 'home';
-  }); 
-  const [currentSolutionTab, setCurrentSolutionTab] = useState(() => {
-    const saved = localStorage.getItem('mdzn-currentSolutionTab');
-    return saved || 'brands';
-  });
+  // Parse URL to get page and tab
+  const parseURL = () => {
+    const path = window.location.pathname;
+    const pathParts = path.split('/').filter(Boolean);
+    
+    if (pathParts.length === 0 || pathParts[0] === 'home' || pathParts[0] === '') {
+      return { page: 'home', tab: 'brands' };
+    }
+    
+    if (pathParts[0] === 'connect') {
+      return { page: 'connect', tab: 'brands' };
+    }
+    
+    if (pathParts[0] === 'solutions') {
+      const validTabs = ['brands', 'agencies', 'publishers', 'influencers'];
+      const tab = pathParts[1] && validTabs.includes(pathParts[1]) ? pathParts[1] : 'brands';
+      return { page: 'solutions', tab };
+    }
+    
+    return { page: 'home', tab: 'brands' };
+  };
+
+  // Initialize state from URL
+  const urlState = parseURL();
+  const [currentPage, setCurrentPage] = useState(urlState.page);
+  const [currentSolutionTab, setCurrentSolutionTab] = useState(urlState.tab);
   const [activeModal, setActiveModal] = useState(null);
 
-  // Save state to localStorage whenever it changes
+  // Update URL when state changes
   useEffect(() => {
+    let url = '/';
+    
+    if (currentPage === 'connect') {
+      url = '/connect';
+    } else if (currentPage === 'solutions') {
+      url = `/solutions/${currentSolutionTab}`;
+    } else {
+      url = '/';
+    }
+    
+    // Update URL without page reload
+    if (window.location.pathname !== url) {
+      window.history.pushState({ page: currentPage, tab: currentSolutionTab }, '', url);
+    }
+    
+    // Save to localStorage
     localStorage.setItem('mdzn-currentPage', currentPage);
-  }, [currentPage]);
-
-  useEffect(() => {
     localStorage.setItem('mdzn-currentSolutionTab', currentSolutionTab);
-  }, [currentSolutionTab]);
+  }, [currentPage, currentSolutionTab]);
+
+  // Handle browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      const newState = parseURL();
+      setCurrentPage(newState.page);
+      setCurrentSolutionTab(newState.tab);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Scroll to top on page change
   useEffect(() => {
